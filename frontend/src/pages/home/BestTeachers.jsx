@@ -18,21 +18,26 @@ const BestTeachers = () => {
     slidesToScroll: 3,
     adaptiveHeight: true,
   };
+  const settingsss = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+  };
   //TODO: Disable next/prev buttons when reach the start/end of the slides number
   // const slick_track = document.querySelector('.slick-track').childElementCount 
 
   return (
-    <div className='text-primary flex flex-col gap-14 my-20 overflow-hidden'>
+    <div className='text-primary flex flex-col gap-4 sm:gap-14 my-20 overflow-hidden'>
       <div className='text-center'>
-        <h1 className=' font-semibold text-[50px] leading-[60.95px] '>أهم الأساتذة </h1>
+        <h1 className=' font-semibold text-[25px]  sm:text-[50px] leading-[30.47px] sm:leading-[60.95px] '>! أهم الأســـاتذة </h1>
         {/* TEXT HEAD ANIMATION */}
         <div className='hidden'></div>
       </div>
       {/* TEACHERS CARDS */}
-      {/* className='flex bg-red-200 justify-center items-center overflow-x-hidden w-3/6 mx-auto gap-20 py-16' */}
-
-      {/* <div className=''> */}
-        <div className='w-4/6 bg-red- mx-auto'>
+        <div className='w-4/6 mx-auto'>
           <Slider ref={slider => (customSlider.current = slider)} {...settings} className=''>
             <TeacherCard />
             <TeacherCard />
@@ -48,32 +53,30 @@ const BestTeachers = () => {
           </Slider>
 
         </div>
-      
-      {/* </div> */}
-      
-
-      
       {/* CARDS SWIP BTNs */}
         <div className='flex justify-evenly items-center w-4/6 mx-auto'>
-          <button type='button' onClick={() => customSlider.current.slickPrev()}  className='btn cursor-pointer flex justify-center items-center w-[55px] h-[55px] bg-primary rounded-full'>
-            <svg width="13" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button type='button' onClick={() => customSlider.current.slickPrev()}  className='btn cursor-pointer flex justify-center items-center w-[35px] h-[35px] sm:w-[55px] sm:h-[55px] bg-primary rounded-full'>
+            <svg className='w-4 h-4 sm:w-[13px] sm:h-[13px]' viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11.4651 21.7074L1.78509 11.9999L11.4651 2.29236" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <button onClick={() => customSlider.current.slickNext()} type='button'  className=' cursor-pointer flex justify-center items-center w-[55px] h-[55px] bg-primary rounded-full'>
-            <svg width="13" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button onClick={() => customSlider.current.slickNext()} type='button'  className=' cursor-pointer flex justify-center items-center w-[35px] h-[35px] sm:w-[55px] sm:h-[55px] bg-primary rounded-full'>
+            <svg className='w-4 h-4 sm:w-[13px] sm:h-[13px]' viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.53491 21.7074L11.2149 11.9999L1.53491 2.29236" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
         </div>
-
       {/* MORE TEACHERS BRN */}
-      <div className={`border-[2px] cursor-pointer w-fit mx-auto rounded-[14px] px-10 mt-4 py-4 box-border border-primary bg-transparent `}>
-        <Link to={'teachers-list'} className={`text-[18px] cursor-pointer text-primary font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
-          المزيد من الأساتذة  
+        <Link to={'teachers-list'} className={`flex flex-row-reverse gap-4 justify-center items-center sm:text-[18px] text-[15px] border-[2px] w-fit mx-auto rounded-[14px] px-5 sm:px-10 mt-4 py-2 sm:py-4 box-border border-primary bg-transparent cursor-pointer text-primary font-normal leading-[18.29px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
+          <p className={``}>
+              المزيد من الأساتذة  
+          </p>
+          <div className='border-2 rounded-full flex justify-center items-center w-[25px] h-[25px] border-primary'>
+            <svg className=' w-[9px] h-[12px] '  viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.45301 11.2012L1.55457 6.28882L6.45301 1.37646" stroke="#5A0057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </Link>
-      </div>
-
     </div>
   )
 }

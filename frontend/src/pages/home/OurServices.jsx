@@ -8,14 +8,14 @@ import service4Pic from '../../assets/service4.jpg'
 
 const OurServices = () => {
   return (
-    <div id='ourServices' className=' py-16 '>
-      <div className='text-center mb-24'>
-        <h1 className='text-primary font-semibold text-[50px] leading-[60.95px] '>خدماتـنــا</h1>
+    <div id='ourServices' className='pb-16 pt-10 '>
+      <div className='text-center mb-16 sm:mb-24'>
+        <h1 className='text-primary font-semibold text-[25px] sm:text-[50px] leading-[30.47px] sm:leading-[60.95px] '>خدماتـنــا</h1>
         {/* TEXT HEAD ANIMATION */}
         <div className='hidden'></div>
       </div>
       {/* SERVICES */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 gap-y-24 w-4/6 mx-auto'>
+      <div id='servicesList' className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 gap-y-24 w-4/6 mx-auto'>
         <Service serviceName={'مساعدة إفتراضية'} redirectTo={''} servicePicture={service1Pic} serviceDescription={'.موسبيإ ميرول صن نم خسن ىلع اًضيأ توح يتلاو ركيام جياب سودلأ لثم ينورتكلإلا رشنلا جمارب روهظ عم اَرخؤم ىرخأ ةرم رشتنيل داعو ،صنلا اذه'}  />
         <Service serviceName={'دورات تعـــليميــــة'} redirectTo={''} servicePicture={service2Pic} serviceDescription={'.موسبيإ ميرول صن نم خسن ىلع اًضيأ توح يتلاو ركيام جياب سودلأ لثم ينورتكلإلا رشنلا جمارب روهظ عم اَرخؤم ىرخأ ةرم رشتنيل داعو ،صنلا اذه'}  />
         <Service serviceName={'تدقــيق لغوي'} redirectTo={''} servicePicture={service3Pic} serviceDescription={'.موسبيإ ميرول صن نم خسن ىلع اًضيأ توح يتلاو ركيام جياب سودلأ لثم ينورتكلإلا رشنلا جمارب روهظ عم اَرخؤم ىرخأ ةرم رشتنيل داعو ،صنلا اذه'}  />

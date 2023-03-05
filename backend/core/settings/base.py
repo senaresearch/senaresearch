@@ -17,6 +17,8 @@ INSTALLED_APPS = [
     'user_account',
     'sena_research',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -93,3 +95,21 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_account.Promoter'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
+
+DJOSER = {
+    # 'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    # 'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    # 'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    # 'SEND_ACTIVATION_EMAIL': True,
+    # 'LOGOUT_ON_PASSWORD_CHANGE': True,
+    'SERIALIZERS': {
+        'user': 'user_account.serializers.PromoterSerializer',
+        'current_user': 'user_account.serializers.PromoterSerializer',
+    },
+}

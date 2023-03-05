@@ -8,13 +8,13 @@ import servicePict3 from '../../assets/service33.png'
 
 const TeacherProfile = () => {
   return (
-    <div className=' bg-primary w-screen px-6 py-16 '>
+    <div className=' bg-primary w-full px-6 py-16 '>
         <div className='text-primary my-8 flex flex-col gap-16 mx-auto w-5/6 bg-white p-16 py-20 '>
             {/* TEACHER DETIALS */}
             <div className='flex flex-col gap-14'>
                 <h1 className=' font-semibold font-[Montserrat-Arabic] text-[25px] leading-[30.47px] text-right py-2 px-2 border-r-4 border-primary '>نــبذة عن الأستــاذ</h1>
-                <div className='flex gap-12 w-full'>
-                    <div className='w-4/6 flex flex-col gap-7'>
+                <div className='flex flex-col-reverse sm:gap-12 sm:flex-row w-full'>
+                    <div className='w-full sm:w-4/6 flex flex-col gap-7'>
                         <h1 className='font-[Montserrat-Arabic] font-semibold text-[35px] text-right leading-[42.66px] '>الأستاذ فلان </h1>
                         <p className=' font-normal text-[20px] leading-[24.38px] text-right font-[Montserrat-Arabic]  '>
                             Praesent ut tortor consectetur, semper sapien non, lacinia augue. Aenean arcu libero, facilisis et nisi non, tempus faucibus tortor. Mauris vel nulla aliquam, pellentesque enim ac, faucibus tortor. Nulla odio nibh, cursus sit amet urna id, dignissim euismod augue.
@@ -23,7 +23,7 @@ const TeacherProfile = () => {
                             Duis sollicitudin, libero porttitor rutrum ultrices, turpis lorem fermentum justo, quis ornare augue tortor non est. Class aptent taciti sociosqu ad litora torquent per 
                         </p>
                     </div>
-                    <div className='w-2/6 bg-red-50'><img className='w-full h-full' src={teacherPic} alt="" /></div>
+                    <div className='md:w-2/6 w-full bg-red-50'><img className='w-full h-full' src={teacherPic} alt="" /></div>
                 </div>
             </div>
 

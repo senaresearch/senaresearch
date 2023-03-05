@@ -14,8 +14,10 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    /* min-height: 100vh; */
+    /* display: flex;
+    flex-direction: column; */
 }
-
 main::after {
     content: '';
     position: absolute;
@@ -24,14 +26,6 @@ main::after {
     z-index: -1;
     
 }
-/* .whyAreUs::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(90, 0, 87, 0.8);
-    z-index: -1;
-    
-} */
 select::after {
     content: "";
     width: 0.8em;
@@ -45,9 +39,26 @@ select::after {
     display: flex !important;
     gap: 2rem !important;
     padding-top: 2rem !important;
+    /* flex-direction: column !important;
+    background-color: cadetblue; */
 }
 .slick-list{
     padding-top: 3rem;
     padding-bottom: 3rem;
     height: fit-content !important;
+
+}
+footer{
+    /* margin-top: auto; */
+}
+@media screen and  (max-width: 640px){
+    .slick-list{
+        padding: 0;
+        padding-top: 3rem;
+    }
+}
+@media screen and  (max-width: 499px){
+    #servicesList{
+        width: 80% !important;
+    }
 }

@@ -12,7 +12,7 @@ function Main() {
     isolation: 'isolate'}; 
   return (
     <main id='home' className='
-      h-screen w-screen relative overflow-hidden 
+      h-screen w-full relative overflow-hidden 
       bg-cover bg-no-repeat bg-center bg-primary'
       style={mainStyle}>
       <div className='w-full h-full flex flex-col items-center justify-center gap-20 text-3xl'>
@@ -55,8 +55,8 @@ function Main() {
         {/* 2 BTNs */}
         <div className='flex items-center justify-center gap-8'>
           
-          <Button paddingX={'md:px-12 px-8'} linkText={'مساعدة إفتراضية'} bgColor={'bg-transparent'} textColor={'text-white'} redirectTo={'/#ourServices'} borderColor={'border-white'} />
-          <Button paddingX={'md:px-12 px-8'} linkText={'تعرف علينا'} bgColor={'bg-white'} textColor={'text-primary'} redirectTo={'/#aboutUs'} borderColor={'border-white'} />
+          <Button paddingX={'md:px-12 px-4'} linkText={'مساعدة إفتراضية'} bgColor={'bg-transparent'} textColor={'text-white'} redirectTo={'/#ourServices'} borderColor={'border-white'} />
+          <Button paddingX={'md:px-12 px-4'} linkText={'تعرف علينا'} bgColor={'bg-white'} textColor={'text-primary'} redirectTo={'/#aboutUs'} borderColor={'border-white'} />
         </div>
       </div>
     </main>
