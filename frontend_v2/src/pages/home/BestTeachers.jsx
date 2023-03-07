@@ -9,13 +9,9 @@ import { useEffect } from 'react';
 
 
 
-const BestTeachers = () => {
-  // console.log(window.innerWidth)
-  
+const BestTeachers = () => {  
   const [settingsState, setSettingsState] = useState()
-  console.log(settingsState)
   function handleResize() {
-    // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
     if (window.innerWidth <= 640){
       setSettingsState({
         dots: false,
@@ -46,15 +42,9 @@ const BestTeachers = () => {
         adaptiveHeight: true,
       })
     }
-    console.log(settingsState)
   }
   window.addEventListener('resize', handleResize)
   window.addEventListener('load', handleResize)
-//   useEffect(() => {
-//     
-
-    
-//   }, [window.innerWidth,])
   const customSlider = useRef();
 
 
@@ -69,7 +59,7 @@ const BestTeachers = () => {
         <div className='hidden'></div>
       </div>
       {/* TEACHERS CARDS */}
-        <div className='w-4/6 mx-auto'>
+        <div className='w-4/6 mx-auto '>
           <Slider ref={slider => (customSlider.current = slider)} {...settingsState} className=''>
             <TeacherCard />
             <TeacherCard />

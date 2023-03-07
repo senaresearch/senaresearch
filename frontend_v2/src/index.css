@@ -62,3 +62,7 @@ footer{
         width: 80% !important;
     }
 }
+
+button.slick-arrow.slick-next, button.slick-arrow.slick-prev{
+    display: none!important;
+}
