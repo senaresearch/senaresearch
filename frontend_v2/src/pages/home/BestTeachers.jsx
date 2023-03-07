@@ -1,31 +1,63 @@
 import TeacherCard from '../../components/TeacherCard'
 import { Link } from 'react-router-dom'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect } from 'react';
 
 
 
 
 const BestTeachers = () => {
+  // console.log(window.innerWidth)
+  
+  const [settingsState, setSettingsState] = useState()
+  console.log(settingsState)
+  function handleResize() {
+    // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+    if (window.innerWidth <= 640){
+      setSettingsState({
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+      })
+        
+    }else if(window.innerWidth <= 768){
+      setSettingsState({
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        adaptiveHeight: true,
+      })
+        
+    }else{
+      setSettingsState({
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        adaptiveHeight: true,
+      })
+    }
+    console.log(settingsState)
+  }
+  window.addEventListener('resize', handleResize)
+  window.addEventListener('load', handleResize)
+//   useEffect(() => {
+//     
+
+    
+//   }, [window.innerWidth,])
   const customSlider = useRef();
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    adaptiveHeight: true,
-  };
-  const settingsss = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-  };
+
+
   //TODO: Disable next/prev buttons when reach the start/end of the slides number
   // const slick_track = document.querySelector('.slick-track').childElementCount 
 
@@ -38,7 +70,7 @@ const BestTeachers = () => {
       </div>
       {/* TEACHERS CARDS */}
         <div className='w-4/6 mx-auto'>
-          <Slider ref={slider => (customSlider.current = slider)} {...settings} className=''>
+          <Slider ref={slider => (customSlider.current = slider)} {...settingsState} className=''>
             <TeacherCard />
             <TeacherCard />
             <TeacherCard />
