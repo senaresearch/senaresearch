@@ -9,7 +9,7 @@ const ContactUs = () => {
         <div className='hidden'></div>
       </div>
       {/* CONTACT FORM */}
-      <form action="" className=' flex flex-col gap-8  font-[Montserrat-Arabic] font-normal text-[15px] leading-[18.29px]  sm:text-[20px] sm:leading-[26.57px] w-[80%] sm:w-[45%] my-16 mx-auto'>
+      <form action="" className=' flex flex-col gap-8  font-[Montserrat-Arabic] font-normal text-[15px] leading-[18.29px]  sm:text-[20px] sm:leading-[26.57px] w-[80%] sm:w-[70%] my-16 mx-auto bg--300'>
         <input type="text" placeholder='الإسم الكـامل' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6' />
         <input type="text" placeholder='البريد الإلكتروني' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6' rounded-lg  />
         <input type="text" placeholder='رقم الهــــاتف' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6' rounded-lg  />

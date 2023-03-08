@@ -2,9 +2,11 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='flex flex-col gap-14 sm:gap-20 pt-16 sm:pt-28 bg-[#30002E] text-white font-[Montserrat-Arabic]'>
+    <div className='bg-[#30002E] text-white font-[Montserrat-Arabic]
+                    flex flex-col gap-14 pt-14
+                    sm:gap-18 sm:pt-28  '>
       {/* DETIALS */}
-      <div className='w-5/6 mx-auto flex sm:flex-row sm:justify-evenly flex-col justify-center bg-slate- gap-10 sm:gap-8 items-start'>
+      <div className='w-5/6 md:w-11/12 mx-auto flex flex-col justify-between md:flex-row md:justify-evenly gap-10 sm:gap-8'>
         {/* PHONE NUMBER */}
         <div className='flex jusify-center items-center gap-3'>
           {/* ICON */}

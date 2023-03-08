@@ -7,20 +7,24 @@ import service1 from '../assets/service1.jpg'
 const Service = ({serviceName, redirectTo, serviceDescription, servicePicture}) => {
   return (
     // TODO: MODIFY THE CARDs SHADOW
-    <div className='bg-white relative py-8 px-6 text-center shadow-xl flex flex-col gap-8 rounded-xl mt-16'>
+    <div className='relative text-center shadow-xl rounded-xl
+                    flex flex-col justify-between items-center 
+                    bg-red-30 px-6 py-6'>
         {/* IMAGE */}
-        <div className='absolute top-[-6rem] left-0 right-0 p-4'>
-            <img src={servicePicture} alt="" />
+        <div className='relative bottom-16 shadow-2xl'>
+            <img className='w-full h-full' src={servicePicture} alt="" />
         </div>
-        {/* SERVICE TITLE */}
-        <div className='mt-[6rem] flex flex-col gap-4 '>
-          <h1 className=' font-[Montserrat-Arabic] font-bold text-[18px] sm:text-[25px] leading-[21.94px] sm:leading-[31.57px] text-primary'>{serviceName}</h1>
-          <p className='font-normal font-[Montserrat-Arabic] text-[15px] leading-[18.29px] sm:leading-[19.38px] text-[#AAA8A8] '> {serviceDescription} </p>
-          <Link to={redirectTo} className={`border-non cursor-pointer w-fit mx-auto rounded-full px-10 sm:px-14 mt-4 py-3 box-border bg-primary text-[15px] sm:text-[18px] text-white font-bold leading-[18.28px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
-            <p className={` `}>
-                طلب الخدمة
-            </p>
-          </Link>
+        {/* SERVICE DETAILS */}
+        <div className='grid grid-cols-1 grid-rows-4  mt-[-3rem]
+                        '>
+          <h1 className='text-primary text-center align-middle m-auto font-[Montserrat-Arabic] font-bold text-[18px] leading-[21.94px]
+                        sm:text-[25px]  sm:leading-[31.57px] '>{serviceName}</h1>
+          <p className='font-normal  py-2 m-auto font-[Montserrat-Arabic] text-[15px] leading-[18.29px] text-[#AAA8A8]
+                        sm:leading-[19.38px]
+                        row-span-2'>{serviceDescription}</p>
+          <div className='mt-4'>
+            <Link to={redirectTo} className={`border-non cursor-pointer w-fit mx-auto rounded-full px-10 lg:px-5 py-3 box-border bg-primary text-[15px] sm:text-[18px] text-white border-b-indigo-400 font-bold leading-[18.28px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>طلب الخدمة</Link>
+          </div>
         </div>
         
     </div>
