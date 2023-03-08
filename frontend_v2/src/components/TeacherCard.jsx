@@ -2,9 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const TeacherCard = () => {
   return (
+    // <div className='bg-white shadow-xl w-full rounded-xl px-12 pt-20 pb-6 relative'>
+    //     <div className=' w-[115px] h-[115px] bg-primary rounded-full absolute top-[-48px] left-[25%]'>
+    //         <img src="" alt="" />
+    //     </div>
+    //     <p className=' font-semibold text-[25px] leading-[30.47px] mt-6'>الأستاذ فلان</p>
+    //     <p className=' leading-[24.38px] text-[20px] font-normal tracking-[0.145em]'>Math teacher</p>
+    // </div>
     <>
     <Link to='/teacher-profile'>
-        <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full  shadow-lg rounded-xl">
+        <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words w-full mb-6 shadow-lg rounded-xl mt-16">
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
                     <div class="w-full flex justify-center">

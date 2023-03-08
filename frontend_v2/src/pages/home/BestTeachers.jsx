@@ -1,10 +1,9 @@
 import TeacherCard from '../../components/TeacherCard'
 import { Link } from 'react-router-dom'
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { useEffect } from 'react';
 
 
 
@@ -44,7 +43,9 @@ const BestTeachers = () => {
     }
   }
   window.addEventListener('resize', handleResize)
-  window.addEventListener('load', handleResize)
+  useEffect(()=>{
+    window.addEventListener('load', handleResize)
+  }, [])
   const customSlider = useRef();
 
 
