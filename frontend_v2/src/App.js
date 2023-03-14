@@ -7,6 +7,7 @@ import TeachersList from './pages/teachersList/TeachersList';
 import TeacherProfile from './pages/teacherProfile/TeacherProfile';
 import Reservation from './pages/reservationForm/Reservation';
 import Login from './pages/login/Login';
+import Dashboard from './pages/dashboard/Dashboard';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='teachers-list' element={ <TeachersList /> } />
         <Route path='teacher-profile' element={ <TeacherProfile /> } />
         <Route path='teacher-reserve' element={ <Reservation /> } />
+        <Route path='dashboard' element={ <Dashboard /> } />
         <Route path='*' element={ <NotFound /> } />
       </Routes>
 
