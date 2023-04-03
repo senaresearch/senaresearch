@@ -1,9 +1,18 @@
 import React from 'react'
+import DashbordNavbar from './DashbordNavbar'
+import SideMenu from './SideMenu';
+import { Outlet } from 'react-router-dom'
+import { DahsboardProvider } from './DashboardContext';
 
-const dashboard = () => {
+const Dashboard = () => {
   return (
-    <div>dashboard</div>
+    <div className='h-screen'>
+      <DahsboardProvider>
+        <DashbordNavbar/>
+        <SideMenu />
+      </DahsboardProvider>
+    </div>
   )
 }
 
-export default dashboard
+export default Dashboard

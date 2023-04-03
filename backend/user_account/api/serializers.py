@@ -6,4 +6,5 @@ USER = get_user_model()
 class PromoterSerializer(serializers.ModelSerializer):
     class Meta:
         model = USER
-        fields = ['first_name', 'username', 'is_active', 'id' ]
+        fields = ('first_name', 'last_name', 'email' , 'bio', )
+        # fields = ('__all__')

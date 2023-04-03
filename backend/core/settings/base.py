@@ -3,7 +3,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -29,6 +30,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -109,7 +111,7 @@ DJOSER = {
     # 'SEND_ACTIVATION_EMAIL': True,
     # 'LOGOUT_ON_PASSWORD_CHANGE': True,
     'SERIALIZERS': {
-        'user': 'user_account.serializers.PromoterSerializer',
-        'current_user': 'user_account.serializers.PromoterSerializer',
+        'user': 'user_account.api.serializers.PromoterSerializer',
+        'current_user': 'user_account.api.serializers.PromoterSerializer',
     },
 }

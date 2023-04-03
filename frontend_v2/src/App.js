@@ -8,28 +8,47 @@ import TeacherProfile from './pages/teacherProfile/TeacherProfile';
 import Reservation from './pages/reservationForm/Reservation';
 import Login from './pages/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
+import Index from './pages/Index'
+import UserInfo from './pages/dashboard/UserInfo';
+import UserServices from './pages/dashboard/UserServices';
+import Settings from './pages/dashboard/Settings';
+import Help from './pages/dashboard/Help';
+import {AuthProvider} from './context/AuthContext'
+import PrivateRoute from './utils/PrivateRoute'
+
 
 function App() {
 
   return (
-    <div className="App">
-      <Navbar />
-      
+    <AuthProvider>
+      <div className="App">
+        {/* <Navbar /> */}
+        
 
-      <Routes>
-        <Route path='/' element={ <Home /> } />
-        <Route path='login' element={ <Login /> } />
-        <Route path='teachers-list' element={ <TeachersList /> } />
-        <Route path='teacher-profile' element={ <TeacherProfile /> } />
-        <Route path='teacher-reserve' element={ <Reservation /> } />
-        <Route path='dashboard' element={ <Dashboard /> } />
-        <Route path='*' element={ <NotFound /> } />
-      </Routes>
+        <Routes>
+          <Route  path='' element={ <Index /> }>
+            <Route path='/' element={ <Home /> } />
+            <Route path='login' element={ <Login /> } />
+            <Route path='teachers-list' element={ <TeachersList /> } />
+            <Route path='teacher-profile' element={ <TeacherProfile /> } />
+            <Route path='teacher-reserve' element={ <Reservation /> } />
+            <Route path='*' element={ <NotFound /> } />
+          </Route>
+          <Route path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}  >
+            <Route path='help' element={ <Help /> } />
+            <Route path='settings' element={ <Settings /> } />
+            <Route path='info' element={ <UserInfo /> } />
+            <Route path='services' element={ <UserServices /> } />
+          </Route>
+        </Routes>
 
 
-      
-      <Footer />
-    </div>
+        
+        {/* <Footer /> */}
+      </div>
+
+    </AuthProvider>
+
   )
 }
 

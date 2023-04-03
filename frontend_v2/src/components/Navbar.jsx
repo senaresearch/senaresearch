@@ -9,16 +9,16 @@ const Navbar = () => {
     
     window.addEventListener('resize', ()=>window.innerWidth < 769 && setIsOpen(false));
     return (
-        <div className="shadow-lg flex flex-col justify-center bg-primary h-[10vh] z-50 w-full sticky top-0 min-w-[300px]">
-          <div className="flex justify-between items-center p-6  shadow-b-xl ">
+        <div className="shadow-lg flex flex-col justify-center bg-primary h-fit z-50 w-full sticky top-0 min-w-[300px]">
+          <div className="flex justify-between items-center px-6 py-2 shadow-b-xl ">
             {/* login btn */}
-                <Link to={'/login'} className={`text-[18px] cursor-pointer font-medium leading-[21.94pxpx] font-[Montserrat-Arabic] text-right  text-white `}>
+                <Link to={'/login'} className={`text-base cursor-pointer font-medium leading-[21.94pxpx] font-[Montserrat-Arabic] text-right  text-white `}>
                     <p className={`border-[3px] cursor-pointer w-fit rounded-[14px] px-5 py-1 box-border border-white bg-primary `}>
                         تسجيل الدخول
                     </p>
                 </Link>
             {/* BURGER BAR */}
-            <button className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden" onClick={()=>setIsOpen(!isOpen)}>
+            <button className="text-3xl absolute right-6 cursor-pointer md:hidden" onClick={()=>setIsOpen(!isOpen)}>
                 {
                     isOpen ? 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -28,9 +28,7 @@ const Navbar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" fill="nobe" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
-
-                }
-                
+                }    
             </button>
             {/* NAVBAR */}
 

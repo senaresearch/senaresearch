@@ -25,8 +25,9 @@ class Promoter(AbstractUser):
     # academic_division = models.CharField(max_length=100)
     # major = models.CharField(max_length=100)
     # degree = models.CharField(choices=DEGREE, max_length=20)
-    # status = models.CharField(max_length=20, choices=STATUS) # COULD BE BOOLEAN FIELD AS WELL
+    # status = models.CharField(max_length=20, choices=STATUS, default=STATUS[0][0]) # COULD BE BOOLEAN FIELD AS WELL
     # service = models.ManyToManyField(Service)
+    bio = models.TextField()
     
     
     def ge_fullname(self):
