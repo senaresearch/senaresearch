@@ -15,6 +15,7 @@ import Settings from './pages/dashboard/Settings';
 import Help from './pages/dashboard/Help';
 import {AuthProvider} from './context/AuthContext'
 import PrivateRoute from './utils/PrivateRoute'
+import PasswordChange from './pages/dashboard/PasswordChange';
 
 
 function App() {
@@ -28,16 +29,19 @@ function App() {
         <Routes>
           <Route  path='' element={ <Index /> }>
             <Route path='/' element={ <Home /> } />
-            <Route path='login' element={ <Login /> } />
-            <Route path='teachers-list' element={ <TeachersList /> } />
-            <Route path='teacher-profile' element={ <TeacherProfile /> } />
+            <Route path='login' element={<Login />  } />
+            <Route path='promoters-list' element={ <TeachersList /> } />
+            <Route path='promoter/:promoter_id' element={ <TeacherProfile /> } />
             <Route path='teacher-reserve' element={ <Reservation /> } />
-            <Route path='*' element={ <NotFound /> } />
           </Route>
+
+          <Route path='*' element={ <NotFound /> } />
+
           <Route path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}  >
-            <Route path='help' element={ <Help /> } />
+            <Route path='help' element={<Help />  } />
+            <Route path='password-change' element={<PasswordChange />  } />
             <Route path='settings' element={ <Settings /> } />
-            <Route path='info' element={ <UserInfo /> } />
+            <Route path='info' element={<UserInfo />  } />
             <Route path='services' element={ <UserServices /> } />
           </Route>
         </Routes>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const TeacherCard = () => {
+const TeacherCard = ({promoter}) => {
+    console.log(promoter?.id)
   return (
     // <div className='bg-white shadow-xl w-full rounded-xl px-12 pt-20 pb-6 relative'>
     //     <div className=' w-[115px] h-[115px] bg-primary rounded-full absolute top-[-48px] left-[25%]'>
@@ -10,13 +11,13 @@ const TeacherCard = () => {
     //     <p className=' leading-[24.38px] text-[20px] font-normal tracking-[0.145em]'>Math teacher</p>
     // </div>
     <>
-    <Link to='/teacher-profile'>
+    <Link to={`/promoter/${parseInt(promoter?.id)}`}>
         <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words w-full mb-6 shadow-lg rounded-xl mt-16">
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
                     <div class="w-full flex justify-center">
                         <div class="relative">
-                            <img src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true" class="shadow-xl rounded-full align-middle border-[3px] border-primary absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"/>
+                            <img src={`http://127.0.0.1:8000/${promoter?.image}`} alt='promoter' class="shadow-xl rounded-full align-middle border-[3px] border-primary absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px] "/>
                         </div>
                     </div>
                     <div class="w-full text-center mt-20">
@@ -38,7 +39,7 @@ const TeacherCard = () => {
                     </div>
                 </div>
                 <div class="text-center mt-2 pb-6">
-                    <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1"> الأستاذ فلان</h3>
+                    <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">{promoter?.first_name + ' ' + promoter.last_name}</h3>
                     <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
                         <i class="fas fa-map-marker-alt mr-2 text-slate-400 opacity-75"></i>Math teacher
                     </div>

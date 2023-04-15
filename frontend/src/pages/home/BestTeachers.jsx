@@ -48,7 +48,7 @@ const BestTeachers = () => {
   }, [])
   const customSlider = useRef();
 
-
+  
   //TODO: Disable next/prev buttons when reach the start/end of the slides number
   // const slick_track = document.querySelector('.slick-track').childElementCount 
 
@@ -90,7 +90,7 @@ const BestTeachers = () => {
           </button>
         </div>
       {/* MORE TEACHERS BRN */}
-        <Link to={'teachers-list'} className={`flex flex-row-reverse gap-4 justify-center items-center sm:text-[18px] text-[15px] border-[2px] w-fit mx-auto rounded-[14px] px-5 sm:px-10 mt-4 py-2 sm:py-4 box-border border-primary bg-transparent cursor-pointer text-primary font-normal leading-[18.29px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
+        <Link to={'promoters-list'} className={`flex flex-row-reverse gap-4 justify-center items-center sm:text-[18px] text-[15px] border-[2px] w-fit mx-auto rounded-[14px] px-5 sm:px-10 mt-4 py-2 sm:py-4 box-border border-primary bg-transparent cursor-pointer text-primary font-normal leading-[18.29px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
           <p className={``}>
               المزيد من الأساتذة  
           </p>

@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DahsboardContext from './DashboardContext'
+import AuthContext from '../../context/AuthContext'
 
 
 const DashbordNavbar = () => {
@@ -8,25 +9,28 @@ const DashbordNavbar = () => {
     background: "linear-gradient(270deg, rgba(90, 0, 87, 0.87) 0%, rgba(90, 0, 87, 0.75) 101.92%)"
   }
   const {isOpen, setIsOpen} = useContext(DahsboardContext)
+  const {userData, logoutUser} = useContext(AuthContext)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
+  console.log(userData?.image)
+
   return (
     <div style={bgColor} className='
           px-4 h-[6.5%]
           flex justify-between items-center'>
       {/* SETTINGS */}
-        {/* <button className=' cursor-pointer text-white ' type='button'>hello</button> */}
-      <div className='flex gap-2 items-center'>
+      <div className='flex gap-2 items-center ml-14'>
         <div>
           <Link className='flex gap-2 items-center' to={'info'}>
             <div>
-              <img className='h-6 w-6 rounded-full' alt='ff' src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true"/>
+              <img className='h-7 w-7 rounded-full' alt='user' src={userData?.image}/>
             </div>
-            <p className='font-[Montserrat-Arabic] font-normal] text-sm leading-4 text-white'>الأستاذ فلان </p>
+            <p className='font-[Montserrat-Arabic] font-normal cursor-pointer text-sm leading-4 text-white'>{userData?.first_name}</p>
           </Link>
         </div>
-        <div>
-          <button className='bg-green-100' onClick={()=>setIsProfileOpen(prev=>!prev)} type='button'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-[#9DACBE]">
+        <div className='flex items-center'>
+          
+          <button className=' cursor-pointer' onClick={()=>{setIsProfileOpen(prev=>!prev)}} type='button'>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="w-5 h-5 text-[#9DACBE]">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
           </button>
@@ -56,19 +60,17 @@ const DashbordNavbar = () => {
         </Link>
       </div>
         {/* pROFILE BOX */}
-      <div className={`absolute top-0 left-0 z-50 w-60 h-60`} >
+      <div className={`absolute top-0 left-0 z-50 w-60 `} >
         <div className={`${isProfileOpen ? 'flex' : 'hidden'}`}>
           <div className='absolute bg-white top-[3.9rem] right-[1.7rem] w-5 h-5 z-40 origin-center rotate-45 border-t shadow-t shadow-l rounded-l-sm border-l'></div>
-          <div className='W-18 h-18 rounded-md dark:bg-black absolute flex flex-col bg-white top-[4.589rem] right-[1.275rem] dark:border-[#1e293b] z-50 border-x border-b shadow'>
-            <div className=" flex flex-col gap-3 border-b">            
-              <button className="dark:text-white dark:hover:bg-[#334155] py-4 px-6 flex gap-2 p-2 hover:bg-[#e5e7eb] font-medium">
+          <div className='w-fit h-18 rounded-md absolute flex flex-col bg-white top-[4.589rem] right-[1.275rem] z-50 border-x border-b shadow'>
+              <Link to={'password-change'} className="py-4 px-2 flex gap-2 p- border-b  hover:bg-[#e5e7eb] font-medium">
+                <span className='font-semibold mr-2'>تغييـر كلمة المرور</span>
                 <svg fill='#111827' className="h-5 w-5" viewBox="0 0 384 512"><path fill="currentColor" d="M365.3 125.3 258.8 18.8C246.7 6.742 230.5 0 213.5 0H64C28.65 0 0 28.65 0 64l.006 384c0 35.35 28.65 64 64 64H320c35.35 0 64-28.65 64-64V170.5c0-17-6.7-33.2-18.7-45.2zM224 34.08c4.477 1.566 8.666 3.846 12.12 7.299l106.5 106.5c3.48 3.421 5.78 7.621 7.28 12.121H240c-8.8 0-16-7.2-16-16V34.08zM352 448c0 17.64-14.36 32-32 32H64c-17.64 0-32-14.36-32-32V64c0-17.64 14.36-32 32-32h128v112c0 26.5 21.5 48 48 48h112v256zM96.82 360.1a15.883 15.883 0 0 0-4.342 8.113l-12.16 60.79c-2.217 11.11 7.574 20.91 18.69 18.68l60.79-12.15a15.867 15.867 0 0 0 8.109-4.344l122.2-122.2c7.559-7.555 12.82-17.37 13.76-28.02 1.158-13.14-3.432-25.7-12.62-34.88l-8.172-8.176c-7.559-7.559-17.37-12.83-28.01-13.78-13.14-1.172-25.7 3.414-34.89 12.59L96.82 360.1zm51.98 45.2-32.72 6.539 6.543-32.71 86.22-86.23 26.18 26.18L148.8 405.3zm93.8-146.1c4.652-4.645 12.19-4.652 16.84.004l9.338 9.336c4.641 4.64 4.668 12.18-.004 16.84l-11.22 11.22-26.18-26.18L242.6 259.2z"></path></svg>
-                <span>Change Password</span>
-              </button>
-            </div>
-            <button  class="py-4 px-6 dark:hover:bg-[#334155] flex gap-2 items-center hover:bg-[#e5e7eb]">
+              </Link>
+            <button onClick={logoutUser}  class="py-4 px-6 flex gap-2 justify-end items-center hover:bg-[#e5e7eb]">
+              <span className='text-[#ef4444] font-semibold mr-2'>تسجـيل الخروج</span>
               <svg fill='#ef4444' class="w-5 h-5" viewBox="0 0 512 512"><path d="M48 64h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48zm279 19.5l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l132 131.4H172c-6.6 0-12 5.4-12 12v10c0 6.6 5.4 12 12 12h279.9L320 404.4c-4.7 4.7-4.7 12.3 0 17l7.1 7.1c4.7 4.7 12.3 4.7 17 0l164.5-164c4.7-4.7 4.7-12.3 0-17L344 83.5c-4.7-4.7-12.3-4.7-17 0z"></path></svg>
-              <span className=' font-semibold '>Log out</span>
             </button>     
           </div>  
         </div>

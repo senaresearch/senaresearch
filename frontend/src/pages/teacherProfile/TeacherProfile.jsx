@@ -48,7 +48,7 @@ const TeacherProfile = () => {
                     <div className='shadow-2xl rounded-[14px] bg-white
                                     flex flex-col w-full'>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict1} alt="" /></div>
-                        <Link to={'teachers-list'} className={`
+                        <Link to={'promoters-list'} className={`
                                 box-border text-white font-normal  rounded-b-[14px] font-[Montserrat-Arabic] text-center bg-primary
                                 mx-auto px-4 mt-4 py-3
                                 flex justify-center items-center w-full md:text-[22px] md:leading-[28.47px] text-[18px] leading-[21.94px]`}>
@@ -64,7 +64,7 @@ const TeacherProfile = () => {
                     <div className='shadow-2xl rounded-[14px] bg-white
                                     flex flex-col w-full'>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict1} alt="" /></div>
-                        <Link to={'teachers-list'} className={`
+                        <Link to={'promoters-list'} className={`
                                 box-border text-white font-normal  rounded-b-[14px] font-[Montserrat-Arabic] text-center bg-primary
                                 mx-auto px-4 mt-4 py-3
                                 flex justify-center items-center w-full md:text-[22px] md:leading-[28.47px] text-[18px] leading-[21.94px]`}>
@@ -80,7 +80,7 @@ const TeacherProfile = () => {
                     <div className='shadow-2xl rounded-[14px] bg-white
                                     flex flex-col w-full'>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict1} alt="" /></div>
-                        <Link to={'teachers-list'} className={`
+                        <Link to={'promoters-list'} className={`
                                 box-border text-white font-normal  rounded-b-[14px] font-[Montserrat-Arabic] text-center bg-primary
                                 mx-auto px-4 mt-4 py-3
                                 flex justify-center items-center w-full md:text-[22px] md:leading-[28.47px] text-[18px] leading-[21.94px]`}>
@@ -103,7 +103,7 @@ const TeacherProfile = () => {
                     <div className='shadow-2xl rounded-[14px] bg-white
                                     flex flex-col flex-1 w-5/12'>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict1} alt="" /></div>
-                        <Link to={'teachers-list'} className={`
+                        <Link to={'promoters-list'} className={`
                                 box-border text-[18px] text-white font-normal leading-[21.94pxpx] rounded-b-[14px] font-[Montserrat-Arabic] text-center bg-primary
                                 mx-auto px-4 mt-4 py-3
                                 flex justify-center items-center w-full`}>
@@ -119,7 +119,7 @@ const TeacherProfile = () => {
                     <div className='shadow-2xl rounded-[14px] bg-white
                                     flex flex-col w-5/12'>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict1} alt="" /></div>
-                        <Link to={'teachers-list'} className={`
+                        <Link to={'promoters-list'} className={`
                                 box-border text-[18px] text-white font-normal leading-[21.94pxpx] rounded-b-[14px] font-[Montserrat-Arabic] text-center bg-primary
                                 mx-auto px-4 mt-4 py-3
                                 flex justify-center items-center w-full`}>
@@ -135,7 +135,7 @@ const TeacherProfile = () => {
                     <div className='shadow-2xl rounded-[14px] bg-white
                                     flex flex-col w-5/12'>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict1} alt="" /></div>
-                        <Link to={'teachers-list'} className={`
+                        <Link to={'promoters-list'} className={`
                                 box-border text-[18px] text-white font-normal leading-[21.94pxpx] rounded-b-[14px] font-[Montserrat-Arabic] text-center bg-primary
                                 mx-auto px-4 mt-4 py-3
                                 flex justify-center items-center w-full`}>
@@ -159,7 +159,7 @@ const TeacherProfile = () => {
                                     flex flex-col 
                                     '>
                         <div className='w-full h-full '><img className='w-full h-full' src={servicePict2} alt="" /></div>
-                        <Link to={'teachers-list'} className={` bg-primary px-4 flex w-full rounded-b-[14px] mt-4 py-3 box-border text-[18px] text-white font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
+                        <Link to={'promoters-list'} className={` bg-primary px-4 flex w-full rounded-b-[14px] mt-4 py-3 box-border text-[18px] text-white font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
                                 <div>
                                     <svg className='' width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.6992 30.6151C24.3848 30.6151 30.6152 24.3847 30.6152 16.6991C30.6152 9.01346 24.3848 2.78304 16.6992 2.78304C9.01358 2.78304 2.78316 9.01346 2.78316 16.6991C2.78316 24.3847 9.01358 30.6151 16.6992 30.6151Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -174,7 +174,7 @@ const TeacherProfile = () => {
                                     flex flex-col 
                                     '>
                         <div className='w-full h-full flex justify-center items-center'><img className='w-fit h-auto' src={servicePict3} alt="" /></div>
-                        <Link to={'teachers-list'} className={` bg-primary px-4 flex w-full rounded-b-[14px] mt-4 py-3 box-border text-[18px] text-white font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
+                        <Link to={'promoters-list'} className={` bg-primary px-4 flex w-full rounded-b-[14px] mt-4 py-3 box-border text-[18px] text-white font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
                                 <div>
                                     <svg className='' width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.6992 30.6151C24.3848 30.6151 30.6152 24.3847 30.6152 16.6991C30.6152 9.01346 24.3848 2.78304 16.6992 2.78304C9.01358 2.78304 2.78316 9.01346 2.78316 16.6991C2.78316 24.3847 9.01358 30.6151 16.6992 30.6151Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

@@ -1,0 +1,14 @@
+from django.urls import path, include
+from . import views
+
+app_name = 'sena_research'
+
+urlpatterns = [
+    path('services-list/', views.services_list),
+    path('service-create', views.service_create),
+    path('service-update/<int:serviceID>', views.service_update),
+    path('service-delete/<int:serviceID>', views.service_delete),
+    path('categories', views.get_categories),
+    path('contact-us', views.contact_us)
+
+]

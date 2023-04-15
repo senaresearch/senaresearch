@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import TeacherCard from '../../components/TeacherCard'
 import SearchBar from './SearchBar'
 
 
 const TeachersList = () => {
+  
   return (
     <div className=' flex flex-col gap-14 '>
         <SearchBar />

@@ -5,6 +5,6 @@ from . import views
 app_name = 'user_account'
 
 urlpatterns = [
-    path('profile-edit', views.edit_user_profile),
-
+    path('promoters/<int:promoterID>', views.get_promoter_data),
+    path('promoters', views.get_promoters_data),
 ]

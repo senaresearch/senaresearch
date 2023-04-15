@@ -1,15 +1,21 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import Promoter
+from django.contrib.auth import get_user_model
 
-class CustomUserCreationForm(UserCreationForm):
+
+Promoter = get_user_model()
+
+
+class PromoterCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = Promoter
+        # fields = ("username", "email", "last_name", 'first_name',)
+        fields = '__all__'
+        
+
+class PromoterChangeForm(UserChangeForm):
 
     class Meta:
         model = Promoter
-        fields = ("username", "email")
-
-class CustomUserChangeForm(UserChangeForm):
-
-    class Meta:
-        model = Promoter
-        fields = ("username", "email")
+        fields = ("username", "email", "image")

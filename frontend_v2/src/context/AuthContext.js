@@ -1,4 +1,4 @@
-import {createContext, useState, useEffect} from 'react'
+import {createContext, useState} from 'react'
 import {axiosAuth} from '../axios'
 import {useNavigate} from 'react-router-dom'
 // import {toast } from 'react-toastify';
@@ -41,7 +41,7 @@ export const AuthProvider = ({children})=>{
     //     progress: undefined,
     //     theme: "colored",
     // });
-	const [authToken, setAuthToken] = useState(()=>localStorage.getItem('authToken') ? window.localStorage.getItem('authToken') : null)
+	const [authToken, setAuthToken] = useState(()=>localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null)
 
 	const loginUser = (e)=>{
         e.preventDefault()
@@ -57,55 +57,48 @@ export const AuthProvider = ({children})=>{
             }
         }
         ).then((response)=>{
-            window.localStorage.setItem('authToken', response.data['auth_token'])
+            localStorage.setItem('authToken', response.data['auth_token'])
             setAuthToken(response.data['auth_token'])
             navigate('/dashboard/info')
         }).catch((error)=>{
-            console.log('error')
             console.log(error)
         })
     }
-    // const [userData, setUserData] = useState(JSON.parse(window.localStorage.getItem('userData')) ? JSON.parse(window.localStorage.getItem('userData')) : null)
-    const [userData, setUserData] = useState(() => {
-        // getting stored value
-        const saved = localStorage.getItem("userData");
-        const initialValue = JSON.parse(saved);
-        return initialValue || {};
-      });
-    // const getUserData = ()=>{
-    //     axiosAuth({                                                                                                                                                                                                                                                                                                    
-    //         url: '/users/me/',
-    //         method: 'get',
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Token ${authToken}`
-    //         },
-    //     }
-    //     ).then((response)=>{
-    //         window.localStorage.setItem('userData', JSON.stringify(response.data))
-    //         setUserData(response.data)
-    //     }).catch((error)=>{
-    //         console.log(error)
-    //     })
-    // }
-
-    const getUserData = async ()=>{
-        try {
-            const response = await axiosAuth({                                                                                                                                                                                                                                                                                                    
-                url: '/users/me/',
-                method: 'get',
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${authToken}`
-                }
-            })
+    const [userData, setUserData] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
+    // const [userData, setUserData] = useState(null);
+    const getUserData = ()=>{
+        axiosAuth({                                                                                                                                                                                                                                                                                                    
+            url: '/users/me/',
+            method: 'get',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${authToken}`
+            },
+        }
+        ).then((response)=>{
             localStorage.setItem('userData', JSON.stringify(response.data))
             setUserData(response.data)
-            console.log('first rendering')
-        }catch(exeption){
-            console.log('error')
-        }
+        }).catch((error)=>{
+            console.log(error.reponse.data)
+        })
     }
+
+    // const getUserData = async ()=>{
+    //     try {
+    //         const response = await axiosAuth({                                                                                                                                                                                                                                                                                                    
+    //             url: '/users/me/',
+    //             method: 'get',
+    //             headers:{
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Token ${authToken}`
+    //             }
+    //         })
+    //         setUserData(response.data)
+    //         localStorage.setItem('userData', JSON.stringify(response.data))
+    //     }catch(ErrorExeption){
+    //         console.log(ErrorExeption)
+    //     }
+    // }
 
     const RegisterUser = (e)=>{
         e.preventDefault()
@@ -155,20 +148,23 @@ export const AuthProvider = ({children})=>{
         })
     }
 
-    const logoutUser = (e)=>{
-        e.preventDefault()
+    const logoutUser = ()=>{
         axiosAuth({                                                                                                                                                                                                                                                                                                    
-            url: '/logout/',
+            url: '/token/logout',
             method: 'post',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${authToken}`
+            },
         }
         ).then((response)=>{
-            window.localStorage.removeItem('accessToken')
-            window.localStorage.removeItem('user')
-            // setUser(null)
+            window.localStorage.removeItem('authToken')
+            window.localStorage.removeItem('userData')
+            setUserData(null)
             setAuthToken(null)
             // It's recommended to use redirect in loaders and actions rather than useNavigate in your components, 
             // When the redirect is in response to data
-            navigate('onboard')
+            navigate('/login')
             console.log('You loged out successfully.')
         }).catch((err)=>{
             console.log("this is error")
@@ -176,7 +172,7 @@ export const AuthProvider = ({children})=>{
         })
     }
 
-    const passwordChangeHandl = async (e, old_password, new_password1, new_password2) => {
+    const passwordChange = async (e, old_password, new_password1, new_password2) => {
         e.preventDefault()
         let access_token = localStorage.getItem('accessToken')
         try{
@@ -207,14 +203,16 @@ export const AuthProvider = ({children})=>{
     }
 
 	let contextData = {
-        userData:  userData,
-		authToken: authToken,
-        getUserData: getUserData,
-		loginUser: loginUser,
-		logoutUser:logoutUser,
-        RegisterUser:  RegisterUser,
-        passwordReset: passwordReset,
-        passwordChangeHandl:passwordChangeHandl,
+        passwordChange :passwordChange,
+        passwordReset  :passwordReset,
+        setAuthToken   :setAuthToken,
+        RegisterUser   :RegisterUser,
+        setUserData    :setUserData,
+        getUserData    :getUserData,
+		logoutUser     :logoutUser,
+		authToken      :authToken,
+		loginUser      :loginUser,
+        userData       :userData,
 	}
 	return (
 		<AuthContext.Provider value={contextData}>

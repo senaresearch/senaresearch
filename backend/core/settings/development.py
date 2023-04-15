@@ -17,3 +17,8 @@ DATABASES = {
     }
 }
 CORS_ALLOW_ALL_ORIGINS = True
+
+# EMAIL SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+

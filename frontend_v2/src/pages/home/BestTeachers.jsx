@@ -4,7 +4,7 @@ import { useRef, useState, useEffect} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
+import { axiosAccount } from '../../axios';
 
 
 
@@ -51,6 +51,24 @@ const BestTeachers = () => {
 
   //TODO: Disable next/prev buttons when reach the start/end of the slides number
   // const slick_track = document.querySelector('.slick-track').childElementCount 
+  const [promoters, setPromoters] = useState(null)
+  const get_promoters_data = async ()=>{
+      try{
+          const { data } = await axiosAccount({
+              url: `/promoters`,
+              method: 'GET',
+              header: {
+                  "Content-Type": "application/json",
+              }
+          })
+          setPromoters(data)
+        }catch(error){
+          console.log(error)
+        }
+      }
+      useEffect(()=>{
+        get_promoters_data()
+      }, [])
 
   return (
     <div className='text-primary flex flex-col gap-4 sm:gap-14 my-20 overflow-hidden'>
@@ -62,19 +80,13 @@ const BestTeachers = () => {
       {/* TEACHERS CARDS */}
         <div className='w-4/6 mx-auto '>
           <Slider ref={slider => (customSlider.current = slider)} {...settingsState} className=''>
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-            <TeacherCard />
-          </Slider>
+            {
+              promoters && promoters.map(promoter=>(
+                <TeacherCard key={promoter?.id} promoter={promoter} />
 
+              ))
+            }
+          </Slider>
         </div>
       {/* CARDS SWIP BTNs */}
         <div className='flex justify-evenly items-center w-4/6 mx-auto'>
@@ -90,7 +102,7 @@ const BestTeachers = () => {
           </button>
         </div>
       {/* MORE TEACHERS BRN */}
-        <Link to={'teachers-list'} className={`flex flex-row-reverse gap-4 justify-center items-center sm:text-[18px] text-[15px] border-[2px] w-fit mx-auto rounded-[14px] px-5 sm:px-10 mt-4 py-2 sm:py-4 box-border border-primary bg-transparent cursor-pointer text-primary font-normal leading-[18.29px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
+        <Link to={'promoters-list'} className={`flex flex-row-reverse gap-4 justify-center items-center sm:text-[18px] text-[15px] border-[2px] w-fit mx-auto rounded-[14px] px-5 sm:px-10 mt-4 py-2 sm:py-4 box-border border-primary bg-transparent cursor-pointer text-primary font-normal leading-[18.29px] sm:leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
           <p className={``}>
               المزيد من الأساتذة  
           </p>

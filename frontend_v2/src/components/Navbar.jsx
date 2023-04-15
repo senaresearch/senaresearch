@@ -1,11 +1,13 @@
 import Button from "./Button"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import { HashLink } from 'react-router-hash-link';
+import AuthContext from '../context/AuthContext'
 
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const {authToken} = useContext(AuthContext)
     
     window.addEventListener('resize', ()=>window.innerWidth < 769 && setIsOpen(false));
     return (
@@ -14,7 +16,11 @@ const Navbar = () => {
             {/* login btn */}
                 <Link to={'/login'} className={`text-base cursor-pointer font-medium leading-[21.94pxpx] font-[Montserrat-Arabic] text-right  text-white `}>
                     <p className={`border-[3px] cursor-pointer w-fit rounded-[14px] px-5 py-1 box-border border-white bg-primary `}>
-                        تسجيل الدخول
+                        {authToken ? 
+                    'Dashboard'   
+                    :
+                    ' تسجيل الدخول'
+                    }
                     </p>
                 </Link>
             {/* BURGER BAR */}
@@ -42,11 +48,9 @@ const Navbar = () => {
                 transition-all duration-500 ease-in-out
                 ${isOpen ? 'top-16 ':'top-[-250%]'}`
                 }>
-                {/* <Link to=''>تواصل معنا</Link> */}
-                {/* <Link to=''>نبذة عنا</Link> */}
+               
                 <HashLink smooth to={`/#contactUs`}>تواصل معنا</HashLink>
                 <HashLink smooth to={`/#aboutUs`}>نبذة عنا</HashLink>
-                {/* <Link to=''>خدماتنا</Link> */}
                 <HashLink smooth to={`/#ourServices`}>خدماتنا</HashLink>
                 <HashLink smooth to='/#home'>الصفحة الرئيسية</HashLink>
                 {/* LOGO */}

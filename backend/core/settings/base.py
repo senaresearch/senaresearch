@@ -1,4 +1,9 @@
 from pathlib import Path
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,6 +96,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = 'static/'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -109,9 +118,20 @@ DJOSER = {
     # 'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     # 'ACTIVATION_URL': '#/activate/{uid}/{token}',
     # 'SEND_ACTIVATION_EMAIL': True,
-    # 'LOGOUT_ON_PASSWORD_CHANGE': True,
+    'LOGOUT_ON_PASSWORD_CHANGE': True,
+    'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
         'user': 'user_account.api.serializers.PromoterSerializer',
         'current_user': 'user_account.api.serializers.PromoterSerializer',
     },
 }
+
+# EMAIL SETTINGS
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+#  prefixes the subject with the value below when using mail_admins() method
+EMAIL_SUBJECT_PREFIX = 'Contact Form - '
+# Django emails these people(admins) when using mail_admins() method
+ADMINS = [("zakaria", "brahimi.zakaria.abdessamed@gmail.com"), ("Mary", "mary@example.com"), ]

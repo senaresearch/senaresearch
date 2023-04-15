@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from sena_research.models import Service
 
 #TODO: TRANSLATE EVERYTHING IN ARABIC TO MAKE IT EASY TO ACCESS SUING ADMIN PANEL
 
@@ -21,24 +20,14 @@ class Promoter(AbstractUser):
         ('NonActive', 'NonActive'),
     ]
     
-    # rank = models.CharField(choices=RANK, max_length=50)
-    # academic_division = models.CharField(max_length=100)
-    # major = models.CharField(max_length=100)
-    # degree = models.CharField(choices=DEGREE, max_length=20)
-    # status = models.CharField(max_length=20, choices=STATUS, default=STATUS[0][0]) # COULD BE BOOLEAN FIELD AS WELL
-    # service = models.ManyToManyField(Service)
+    rank = models.CharField(choices=RANK, max_length=50)
+    academic_division = models.CharField(max_length=100)
+    major = models.CharField(max_length=100)
+    degree = models.CharField(choices=DEGREE, max_length=20)
+    status = models.CharField(max_length=20, choices=STATUS, default=STATUS[1][0]) # COULD BE BOOLEAN FIELD AS WELL
     bio = models.TextField()
-    
-    
-    def ge_fullname(self):
-        return f'{self.first_name} {self.last_name}'
-    
+    image = models.ImageField(upload_to='Users/', default='media/services/33_003_4DLxqvJ.jpg')
+    class Meta:
+        verbose_name = 'Promoter'
     def __str__(self):
-        return self.ge_fullname()
-    
-    
-# Multiple Languages
-
-# Dashboard
-
-# Design
+        return self.username
