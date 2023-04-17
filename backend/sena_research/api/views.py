@@ -7,7 +7,7 @@ from .serializers import CategorySerializer, ServiceSerializer, ContactSerialize
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.core.mail import send_mail, mail_admins
-
+from user_account.api.serializers import PromoterSerializer
 
 Promoter = get_user_model()
 
@@ -28,7 +28,6 @@ def service_update(request, serviceID):
         services = Service.objects.filter(promoter=request.user)
         servicesSerializer = ServiceSerializer(instance=services, many=True)
         return Response(servicesSerializer.data)
-    print(serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
@@ -38,13 +37,11 @@ def service_delete(request, serviceID):
     service.delete()
     services = Service.objects.filter(promoter=request.user)
     serializer = ServiceSerializer(instance=services, many=True)
-    print(len(serializer.data))
     return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def service_create(request):
-    print('request.data')
     try:
         newService = Service.objects.create(
                     name=request.data.get('name'),
@@ -68,6 +65,8 @@ def get_categories(request):
     categories_serializer = CategorySerializer(categories, many=True)
     return Response(categories_serializer.data)
 
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def contact_us(request):
@@ -83,3 +82,48 @@ def contact_us(request):
           )
         return Response('Your email has been sent succesfully.')
     return Response(message_serializer.errors)
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def promoters_search(request):
+    test = Service.objects.first().category
+    print(test)
+    
+    categoryID = int(request.query_params.get('categoryID')) if request.query_params.get('categoryID') else None
+    major = request.query_params.get('promoterMajor')
+    
+    searchedPromoters  = Promoter.objects.filter(major=major)   if major      else None # if not empty get all promoters
+    searchedCategories = Category.objects.filter(id=categoryID) if categoryID else None # if not null get all categories
+    
+    # THERE ARE THREE WAYS OF SEARCH
+    
+    # --> Search based on both of them
+    if categoryID and major:
+        print('both')
+        
+    # --> Search based on only category
+    elif categoryID and not major:
+        print('categoryid here')
+        
+    # --> Search based on only Promoter Major
+    elif not categoryID and major:
+        print('major is here')
+        promoters_serializer = PromoterSerializer(searchedPromoters, data=[], many=True)
+        if promoters_serializer.is_valid():
+            return Response(promoters_serializer.data)
+        
+    # --> Search without both of them
+    else:
+        print('both are not here')
+        promoters = Promoter.objects.all()
+        promoters_serializer = PromoterSerializer(promoters, data=[], many=True)
+        if promoters_serializer.is_valid():
+            return Response(promoters_serializer.data)
+    
+    
+    
+
+    
+    return Response('serializer.data')

@@ -1,11 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { axiosAPI } from '../../axios'
 
-const SearchBar = () => {
+const SearchBar = ({categories, promoters}) => {
+  const [searchDetails, setSearchDetails] = useState({
+    categoryID: null,
+    promoterMajor: ''
+  })
+//   const [categories, setCategories] = useState(null)
+  const search_promoters = async (event)=>{
+    event.preventDefault()
+    try{
+        const { data } = await axiosAPI({
+            url: `/promoters/search`,
+            method: 'GET',
+            header: {
+                "Content-Type": "application/json",
+            }, 
+            params: {
+                categoryID: searchDetails?.categoryID && parseInt(searchDetails?.categoryID),
+                promoterMajor: searchDetails?.promoterMajor
+            }
+        })
+        // setCategories(data)
+        console.log(data)
+    }catch(error){
+        console.log(error)
+    }
+  }
+  console.log((searchDetails?.categoryID))
   return (
     <div className='sticky top-[10vh] z-40 shadow-xl overflow-hidden bg-white
                     py-5 mb-24
                     flex items-center justify-center  '>
-        <form className=' bg-white h-full text-primary font-[Montserrat-Arabic] font-semibold text-[18px] leading-[21.94px]
+        <form onSubmit={search_promoters} className=' bg-white h-full text-primary font-[Montserrat-Arabic] font-semibold text-[18px] leading-[21.94px]
                          flex flex-col-reverse justify-evenly items-center gap-4
                          md:flex-row md:w-5/6 lg:gap-10
                          lg:w-4/6
@@ -13,7 +40,7 @@ const SearchBar = () => {
 
             <button className='bg-primary text-white rounded-2xl
                                 px-12 md:px-14 py-3 sm:py-4 ' type="submit">ابحــــث</button>
-            <select placeholder='اختـــر الـخدمة' className='outline-none border-2 appearance-none relative border-primary rounded-xl bg-white font-semibold text-base leading-4 sm:leading-5 text-right
+            <select onChange={(e)=>setSearchDetails(prev=>({...prev, categoryID:e.target.value}))} placeholder='اختـــر الـخدمة' className='outline-none border-2 appearance-none relative border-primary rounded-xl bg-white font-semibold text-base leading-4 sm:leading-5 text-right
                                                               sm:p-4 p-3 w-5/6 sm:w-4/6 
                                                               flex flex-col ' name="اختـــر الـخدمة" id="">
                     <div className='absolute'>
@@ -24,13 +51,19 @@ const SearchBar = () => {
                 <option className='text-end flex justify-end ' value="" selected>
                     اختـــر الـخدمة
                 </option>
-                <option className=' p-4 pl-36 font-semibold text-base leading-5 text-right' value="مساعدة إفتراضية">مساعدة إفتراضية</option>
-                <option className='text-right' value="دورات تعليمية">دورات تعليمية</option>
-                <option className='text-right' value="تدقيق لغوي">تدقيق لغوي</option>
-                <option className='text-right' value="دروس دعم">دروس دعم</option>
+                {
+                    categories ?
+                    categories.map(category => (
+                        <option className=' p-4 pl-36 font-semibold text-base leading-5 text-right' value={category?.id}>{category?.name}</option>
+
+                    ))
+                    :
+                    ''
+                }
+                
             </select>
 
-            <select placeholder='اختـــر الـخدمة' className='outline-none border-2 appearance-none relative border-primary rounded-xl bg-white font-semibold text-base leading-4 sm:leading-5 text-right
+            <select onChange={(e)=>{setSearchDetails(prev=>({...prev, promoterMajor:e.target.value}))}} placeholder='اختـــر الـخدمة' className='outline-none border-2 appearance-none relative border-primary rounded-xl bg-white font-semibold text-base leading-4 sm:leading-5 text-right
                                                               sm:p-4 p-3 w-5/6 sm:w-4/6 
                                                               flex flex-col' name="اختـــر الـخدمة" id="">
                     <div className='absolute'>
@@ -41,10 +74,12 @@ const SearchBar = () => {
                 <option className='text-right py-5' value="" selected>
                     <p> اختـــر الـتـخــصـص</p>
                     </option>
-                <option className='p-4 pl-36 font-semibold text-base leading-3 text-right' value=" رياضيات"> رياضيات</option>
-                <option className='text-right' value="علم النفس ">علم النفس </option>
-                <option className='text-right' value=" علوم">علوم </option>
-                <option className='text-right' value="إعلان الي ">إعلان الي </option>
+                {
+                    promoters ? promoters.map(promoter=>(
+                        <option className='p-4 pl-36 font-semibold text-base leading-3 text-right' value={promoter?.major}>{promoter?.major}</option>
+
+                    )) : ''
+                }
             </select>
         </form>
     </div>

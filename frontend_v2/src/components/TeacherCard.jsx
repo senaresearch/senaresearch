@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 const TeacherCard = ({promoter}) => {
-    console.log(promoter?.id)
   return (
     // <div className='bg-white shadow-xl w-full rounded-xl px-12 pt-20 pb-6 relative'>
     //     <div className=' w-[115px] h-[115px] bg-primary rounded-full absolute top-[-48px] left-[25%]'>

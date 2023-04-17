@@ -29,7 +29,6 @@ const ContactUs = () => {
         console.log(error)
       }
     }
-    console.log(emailDetails)
   return (
     <div id='contactUs' className=''>
       <div className='text-center sm:mb-24'>

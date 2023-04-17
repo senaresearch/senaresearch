@@ -26,19 +26,16 @@ Promoter = get_user_model()
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_promoter_data(request, promoterID):
-    # print(type(promoterID))
     promoter = get_object_or_404(Promoter, id=promoterID)
-    # services = Service.objects.filter(promoter=promoter, status='Approved')
-    print(promoter.last_login)
-    promoter_serializer = PromoterSerializer(promoter)
-    # if promoter_serializer.is_valid():
-    print(promoter_serializer.data)
-    return Response({'promoterData':promoter_serializer.data, 'promoterServices':promoter_serializer.data})
-    # promoter_services_serializer = ServiceSerializer(services, many=True)
-    print(promoter_serializer.errors)
-    return Response(promoter_serializer.errors)
+    services = Service.objects.filter(promoter=promoter.id, status='Approved')
+    promoter_serializer = PromoterSerializer(instance=promoter, data=request.data)
+    services_serializer = ServiceSerializer(instance=services, data=[], many=True)
+    # call is_valid to validate the data (even though it's not technically "data")
+    if promoter_serializer.is_valid() and services_serializer.is_valid():
+        # access the serialized data through the .data attribute
+        return Response({'promoterData':promoter_serializer.data, 'promoterServices':services_serializer.data})
 
-
+    return Response({'promoter_serializer_errors':promoter_serializer.errors, 'services_serializer_error':services_serializer.errors})
 
  
 @api_view(['GET'])
@@ -46,7 +43,6 @@ def get_promoter_data(request, promoterID):
 def get_promoters_data(request):
     promoters = Promoter.objects.all()
     promoters_serializer = PromoterSerializer(promoters, many=True)
-    print(promoters_serializer.data)
     return Response(promoters_serializer.data)
 
 

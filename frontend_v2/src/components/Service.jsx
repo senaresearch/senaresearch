@@ -4,7 +4,8 @@ import service1 from '../assets/service1.jpg'
 
 
 
-const Service = ({serviceName, redirectTo, serviceDescription, servicePicture, category}) => {
+const Service = ({category}) => {
+  console.log('service')
   console.log(category)
   return (
     // TODO: MODIFY THE CARDs SHADOW
