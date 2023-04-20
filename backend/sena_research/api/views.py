@@ -102,10 +102,16 @@ def promoters_search(request):
     # --> Search based on both of them
     if categoryID and major:
         print('both')
+        s = Service.objects.filter(category_id=categoryID, promoter__major=major)
+        # s = Promoter.objects.filter(service__category__id=categoryID)
+        print(s)
         
     # --> Search based on only category
     elif categoryID and not major:
         print('categoryid here')
+        s = Service.objects.filter(category_id=categoryID, promoter__major=major)
+        ss = Promoter.objects.filter(service__category__id=categoryID)
+        print(s)
         
     # --> Search based on only Promoter Major
     elif not categoryID and major:

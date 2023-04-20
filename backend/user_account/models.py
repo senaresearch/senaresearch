@@ -26,6 +26,7 @@ class Promoter(AbstractUser):
     degree = models.CharField(choices=DEGREE, max_length=20)
     status = models.CharField(max_length=20, choices=STATUS, default=STATUS[1][0]) # COULD BE BOOLEAN FIELD AS WELL
     bio = models.TextField()
+    # TODO: change the default image
     image = models.ImageField(upload_to='Users/', default='media/services/33_003_4DLxqvJ.jpg')
     class Meta:
         verbose_name = 'Promoter'
