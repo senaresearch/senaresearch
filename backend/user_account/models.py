@@ -28,7 +28,7 @@ class Promoter(AbstractUser):
     bio = models.TextField()
     # TODO: change the default image
     image = models.ImageField(upload_to='Users/', default='media/services/33_003_4DLxqvJ.jpg')
-    class Meta:
-        verbose_name = 'Promoter'
+    # class Meta:
+    #     verbose_name = 'Promoter'
     def __str__(self):
         return self.username
