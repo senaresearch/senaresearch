@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-#TODO: TRANSLATE EVERYTHING IN ARABIC TO MAKE IT EASY TO ACCESS SUING ADMIN PANEL
+#TODO: TRANSLATE EVERYTHING IN ARABIC TO MAKE IT EASY TO ACCESS USING ADMIN PANEL
 
 class Promoter(AbstractUser):
     DEGREE = [
