@@ -5,4 +5,7 @@ set -o errexit  # exit on error
 pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
-python manage.py migrate zero
+python manage.py showmigrations
+python manage.py makemigrations
+python manage.py migrate 
+python manage.py showmigrations
