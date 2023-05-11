@@ -7,10 +7,31 @@ from django.contrib.auth import get_user_model
 Promoter = get_user_model()
 class PromoterAdmin(UserAdmin):
     add_form = PromoterCreationForm
-    form = PromoterChangeForm
+    form = PromoterCreationForm
     model = Promoter
-    list_display = ["email", "username", 'id']
-    
+    list_display = ["email", "username", 'id'] #to control which fields are displayed on the change list page of the admin
+    readonly_fields = ["email", 'bio', "major", "rank", "academic_division", 'degree',]
+    fieldsets = [
+        (
+            'Basic Information',
+            {
+                "fields": ["username", "email", 'bio'],
+            },
+        ),
+        (
+            "Backgrounds",
+            {
+                "fields": ["major", "rank", "academic_division", 'degree', ],
+            },
+        ),
+        (
+            "Status",
+            {
+                "fields": ["status",],
+            },
+        ),
+        
+    ]
     
     # form = PromoterCreationForm
     # add_form = PromoterCreationForm

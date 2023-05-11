@@ -22,7 +22,9 @@ Promoter = get_user_model()
 #     if new_promoter_data.is_valid():
 #         print(new_promoter_data.is_valid())
 #     return Response(new_promoter_data.data)
-	
+
+
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_promoter_data(request, promoterID):

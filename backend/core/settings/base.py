@@ -112,17 +112,21 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
-
+# DJOSER SETTININGS
+# 
 DJOSER = {
     # 'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     # 'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     # 'ACTIVATION_URL': '#/activate/{uid}/{token}',
     # 'SEND_ACTIVATION_EMAIL': True,
-    'LOGOUT_ON_PASSWORD_CHANGE': True,
-    'SET_PASSWORD_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    # 'LOGOUT_ON_PASSWORD_CHANGE': True,
+    # 'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
-        'user': 'user_account.api.serializers.PromoterSerializer',
-        'current_user': 'user_account.api.serializers.PromoterSerializer',
+        'user': 'user_account.api.serializers.PromoterSerializer', # for general users
+        'current_user': 'user_account.api.serializers.CurrentPromoterSerializer', # for users/me endpoint
+        # 'user_create': 'user_account.api.serializers.CustomUserCreateSerializer',
+        'user_create_password_retype': 'user_account.api.serializers.CustomUserCreatePasswordRetypeSerializer',
     },
 }
 

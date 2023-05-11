@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import TeachersList from './pages/teachersList/TeachersList';
 import TeacherProfile from './pages/teacherProfile/TeacherProfile';
 import Reservation from './pages/reservationForm/Reservation';
-import Login from './pages/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import Index from './pages/Index'
 import UserInfo from './pages/dashboard/UserInfo';
@@ -16,6 +15,8 @@ import Help from './pages/dashboard/Help';
 import {AuthProvider} from './context/AuthContext'
 import PrivateRoute from './utils/PrivateRoute'
 import PasswordChange from './pages/dashboard/PasswordChange';
+import Signup from './pages/authentication/Signup';
+import Login from './pages/authentication/Login';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route  path='' element={ <Index /> }>
             <Route path='/' element={ <Home /> } />
             <Route path='login' element={<Login />  } />
+            <Route path='signup' element={<Signup />  } />
             <Route path='promoters-list' element={ <TeachersList /> } />
             <Route path='promoter/:promoter_id' element={ <TeacherProfile /> } />
             <Route path='teacher-reserve' element={ <Reservation /> } />

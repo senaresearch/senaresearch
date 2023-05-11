@@ -2,14 +2,11 @@ import React, {useContext, useState} from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import AuthContext from '../../context/AuthContext'
 
-
-
 const Login = () => {
   let {loginUser, authToken} = useContext(AuthContext)
-  if (authToken){
+  if(authToken){
     return <Navigate to="/dashboard/info" replace/>
   }
-console.log(authToken)
   return (
     <div className='bg-primary w-full py-12 px-6'>
       <div className='bg-white w-11/12 md:w-3/6 m-auto flex flex-col gap-16 py-8 rounded-lg text-primary'>
@@ -20,6 +17,7 @@ console.log(authToken)
               <button type='submit'  className={` bg-primary px-10 flex rounded-md  mt-8 py-2 box-border text-lg text-white w-fit font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
                 <p className='flex justify-evenly w-full'>تسجيل الدخول</p>   
               </button>
+              <p>Don't have an account ! Signup <Link className='text-blue-700 underline' to={'/signup'}>here</Link></p>
         </form>
     </div>
     </div>

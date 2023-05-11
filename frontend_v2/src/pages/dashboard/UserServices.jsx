@@ -119,9 +119,6 @@ const UserServices = () => {
         setServiceImage('')
         setNewServiceModal(true)
     }
-    // const service_create = () =>{
-    //     console.log("hello service_create")
-    // }
     
     useEffect(()=>{
         setServiceName(selectedService?.name)

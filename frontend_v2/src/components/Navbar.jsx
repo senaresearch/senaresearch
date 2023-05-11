@@ -17,7 +17,7 @@ const Navbar = () => {
                 <Link to={'/login'} className={`text-base cursor-pointer font-medium leading-[21.94pxpx] font-[Montserrat-Arabic] text-right  text-white `}>
                     <p className={`border-[3px] cursor-pointer w-fit rounded-[14px] px-5 py-1 box-border border-white bg-primary `}>
                         {authToken ? 
-                    'Dashboard'   
+                    'لوحـة التحكم'   
                     :
                     ' تسجيل الدخول'
                     }

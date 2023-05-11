@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 // import TeachersList from './pages/teachersList/TeachersList';
 // import TeacherProfile from './pages/teacherProfile/TeacherProfile';
 // import Reservation from './pages/reservationForm/Reservation';
-// import Login from './pages/login/Login';
+// import Login from './pages/auth/Login';
 // import Dashboard from './pages/dashboard/Dashboard';
 
 import React from 'react'

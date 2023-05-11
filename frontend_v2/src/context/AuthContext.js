@@ -57,6 +57,7 @@ export const AuthProvider = ({children})=>{
             }
         }
         ).then((response)=>{
+            console.log(response.data)
             localStorage.setItem('authToken', response.data['auth_token'])
             setAuthToken(response.data['auth_token'])
             navigate('/dashboard/info')
@@ -65,7 +66,6 @@ export const AuthProvider = ({children})=>{
         })
     }
     const [userData, setUserData] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
-    // const [userData, setUserData] = useState(null);
     const getUserData = ()=>{
         axiosAuth({                                                                                                                                                                                                                                                                                                    
             url: '/users/me/',
@@ -76,6 +76,7 @@ export const AuthProvider = ({children})=>{
             },
         }
         ).then((response)=>{
+            console.log(response)
             localStorage.setItem('userData', JSON.stringify(response.data))
             setUserData(response.data)
         }).catch((error)=>{
@@ -100,28 +101,29 @@ export const AuthProvider = ({children})=>{
     //     }
     // }
 
-    const RegisterUser = (e)=>{
+    const RegisterNewUser = (e)=>{
         e.preventDefault()
         axiosAuth({                                                                                                                                                                                                                                                                                                    
-            url: '/registration/',
+            url: '/users/',
             method: 'post',
             headers:{
                 'Content-Type': 'application/json',
             },
             data:{
                 "email": e.target.email.value,
-                "password1": e.target.password_1.value,
-                "password2": e.target.password_2.value,
-                "first_name": 'e.target.password.value',
-                "last_name": 'e.target.password.value',
+                "username": e.target.username.value,
+                "password": e.target.password.value,
+                "re_password": e.target.re_password.value,
+                "first_name": e.target.first_name.value,
+                "last_name": e.target.last_name.value,
             }
         }
         ).then((response)=>{
-            navigate('/')
+            navigate('/login')
             console.log('A verification Email have sent successfully, take a look.')
         }).catch((error)=>{
             let data = error.response.data
-            console.log(data)
+            console.log(error)
             
         })
     }
@@ -206,7 +208,7 @@ export const AuthProvider = ({children})=>{
         passwordChange :passwordChange,
         passwordReset  :passwordReset,
         setAuthToken   :setAuthToken,
-        RegisterUser   :RegisterUser,
+        RegisterNewUser:RegisterNewUser,
         setUserData    :setUserData,
         getUserData    :getUserData,
 		logoutUser     :logoutUser,
