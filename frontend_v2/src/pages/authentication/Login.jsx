@@ -17,7 +17,7 @@ const Login = () => {
               <button type='submit'  className={` bg-primary px-10 flex rounded-md  mt-8 py-2 box-border text-lg text-white w-fit font-normal leading-[21.94pxpx] font-[Montserrat-Arabic] text-right `}>
                 <p className='flex justify-evenly w-full'>تسجيل الدخول</p>   
               </button>
-              <p>Don't have an account ! Signup <Link className='text-blue-700 underline' to={'/signup'}>here</Link></p>
+              <p>ليس لديك حسـاب ! انشئ حسـابك من <Link className='text-blue-700 underline' to={'/signup'}>هنا</Link></p>
         </form>
     </div>
     </div>

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { axiosAPI } from '../../axios'
 
-const SearchBar = ({categories, promoters}) => {
+
+const SearchBar = ({categories, setPromoters}) => {
   const [searchDetails, setSearchDetails] = useState({
     categoryID: null,
     promoterMajor: ''
   })
-//   const [categories, setCategories] = useState(null)
   const search_promoters = async (event)=>{
     event.preventDefault()
     try{
@@ -17,18 +17,41 @@ const SearchBar = ({categories, promoters}) => {
                 "Content-Type": "application/json",
             }, 
             params: {
-                categoryID: searchDetails?.categoryID && parseInt(searchDetails?.categoryID),
+                categoryID: searchDetails?.categoryID && JSON.stringify(parseInt(searchDetails?.categoryID)),
                 promoterMajor: searchDetails?.promoterMajor
             }
         })
-        // setCategories(data)
+        data.length !==0 ? setPromoters(data) : setPromoters(null)
+        console.log(data)
+    }catch(error){
+        console.log(error)
+        console.log('eroooor')
+        setPromoters(null)
+    }
+  }
+  const [promoterMajors, setPromoterMajors] = useState(null)
+  const get_promoter_majors = async ()=>{
+    try{
+        const { data } = await axiosAPI({
+            url: `/promoter-majors`,
+            method: 'GET',
+            header: {
+                "Content-Type": "application/json",
+            }
+        })
+        setPromoterMajors(data)
         console.log(data)
     }catch(error){
         console.log(error)
     }
-  }
-  console.log((searchDetails?.categoryID))
-  return (
+}
+    useEffect(()=>{
+        get_promoter_majors()
+    }, [])
+
+
+
+    return (
     <div className='sticky top-[10vh] z-40 shadow-xl overflow-hidden bg-white
                     py-5 mb-24
                     flex items-center justify-center  '>
@@ -52,17 +75,13 @@ const SearchBar = ({categories, promoters}) => {
                     اختـــر الـخدمة
                 </option>
                 {
-                    categories ?
-                    categories.map(category => (
-                        <option className=' p-4 pl-36 font-semibold text-base leading-5 text-right' value={category?.id}>{category?.name}</option>
-
+                    categories ? categories.map(category => (
+                        <option className=' p-4 pl-36 font-semibold text-base leading-5 text-right' value={category?.id} key={category?.id}>{category?.name}</option>
                     ))
                     :
                     ''
-                }
-                
+                }   
             </select>
-
             <select onChange={(e)=>{setSearchDetails(prev=>({...prev, promoterMajor:e.target.value}))}} placeholder='اختـــر الـخدمة' className='outline-none border-2 appearance-none relative border-primary rounded-xl bg-white font-semibold text-base leading-4 sm:leading-5 text-right
                                                               sm:p-4 p-3 w-5/6 sm:w-4/6 
                                                               flex flex-col' name="اختـــر الـخدمة" id="">
@@ -75,8 +94,8 @@ const SearchBar = ({categories, promoters}) => {
                     <p> اختـــر الـتـخــصـص</p>
                     </option>
                 {
-                    promoters ? promoters.map(promoter=>(
-                        <option className='p-4 pl-36 font-semibold text-base leading-3 text-right' value={promoter?.major}>{promoter?.major}</option>
+                    promoterMajors ? promoterMajors.map((major, index)=>(
+                        <option className='p-4 pl-36 font-semibold text-base leading-3 text-right' value={major} key={index}>{major}</option>
 
                     )) : ''
                 }

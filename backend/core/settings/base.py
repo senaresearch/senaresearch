@@ -121,11 +121,11 @@ DJOSER = {
     # 'SEND_ACTIVATION_EMAIL': True,
     'USER_CREATE_PASSWORD_RETYPE': True,
     # 'LOGOUT_ON_PASSWORD_CHANGE': True,
-    # 'SET_PASSWORD_RETYPE': True,
+    'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
         'user': 'user_account.api.serializers.PromoterSerializer', # for general users
         'current_user': 'user_account.api.serializers.CurrentPromoterSerializer', # for users/me endpoint
-        # 'user_create': 'user_account.api.serializers.CustomUserCreateSerializer',
+        # 'user_create': 'user_account.api.serializers.CustomPromoterCreateSerializer',
         'user_create_password_retype': 'user_account.api.serializers.CustomUserCreatePasswordRetypeSerializer',
     },
 }
@@ -139,3 +139,10 @@ EMAIL_USE_SSL = False
 EMAIL_SUBJECT_PREFIX = 'Contact Form - '
 # Django emails these people(admins) when using mail_admins() method
 ADMINS = [("zakaria", "brahimi.zakaria.abdessamed@gmail.com"), ("Mary", "mary@example.com"), ]
+
+
+# CHARGILY SETTINGS
+CHARGILY_API_KEY = 'api_gewokfLmZS5BRu7BFVNP8pVs2XejOcVJXJbILsNUiGEtXYBC55yXQ7cBlZW53H2a'
+CHARGILY_SECRET_KEY = "secret_2ef836707dbd1c2d4e823bd4ceab5949fea99ae786333dbf1197dbdd5ef7c3a2"
+
+

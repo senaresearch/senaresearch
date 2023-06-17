@@ -30,21 +30,17 @@ Promoter = get_user_model()
 def get_promoter_data(request, promoterID):
     promoter = get_object_or_404(Promoter, id=promoterID)
     services = Service.objects.filter(promoter=promoter.id, status='Approved')
-    promoter_serializer = PromoterSerializer(instance=promoter, data=request.data)
-    services_serializer = ServiceSerializer(instance=services, data=[], many=True)
-    # call is_valid to validate the data (even though it's not technically "data")
-    if promoter_serializer.is_valid() and services_serializer.is_valid():
-        # access the serialized data through the .data attribute
-        return Response({'promoterData':promoter_serializer.data, 'promoterServices':services_serializer.data})
+    promoter_serializer = CurrentPromoterSerializer(promoter)
+    services_serializer = ServiceSerializer(instance=services, many=True)
 
-    return Response({'promoter_serializer_errors':promoter_serializer.errors, 'services_serializer_error':services_serializer.errors})
-
+    # access the serialized data through the .data attribute
+    return Response({'promoterData':promoter_serializer.data, 'promoterServices':services_serializer.data})
  
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_promoters_data(request):
-    promoters = Promoter.objects.all()
-    promoters_serializer = PromoterSerializer(promoters, many=True)
+    promoters = Promoter.objects.filter(is_active=True)
+    promoters_serializer = CurrentPromoterSerializer(promoters, many=True)
     return Response(promoters_serializer.data)
 
 

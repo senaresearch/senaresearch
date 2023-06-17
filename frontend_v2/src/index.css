@@ -37,21 +37,22 @@ select::after {
 
 .slick-track
 {
+    
     display: flex !important;
     gap: 2rem !important;
     padding-top: 2rem !important;
-    /* flex-direction: column !important;
-    background-color: cadetblue; */
+    /* flex-direction: column !important;*/
+    /* background-color: cadetblue;  */
+}
+.slick-list:first-child{
+    /* transform: translate3d(0px, 0px, 0px) !important; */
 }
 .slick-list{
     padding-top: 3rem;
-    padding-bottom: 3rem;
     height: fit-content !important;
 
 }
-footer{
-    /* margin-top: auto; */
-}
+
 @media screen and  (max-width: 640px){
     .slick-list{
         padding: 0;
@@ -67,3 +68,13 @@ footer{
 button.slick-arrow.slick-next, button.slick-arrow.slick-prev{
     display: none!important;
 }
+
+@layer base {
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number'] {
+          -webkit-appearance: none;
+          margin: 0;
+          -moz-appearance: textfield !important;
+        }
+     }

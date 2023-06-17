@@ -34,22 +34,23 @@ class Service(models.Model):
     def __str__(self):
         return f'the service -{self.name}- on the category -{self.category}- by name -{self.promoter}'
     
-class Student(models.Model):
-    fullname    = models.CharField(max_length=255)
-    description = models.TextField(null=True)
-    # documents   = models.FileField() #TODO: IS IT WORKING IF THE USER SELECT MULTIPLE FILES !!!
+class Order(models.Model):
+    """
+    1. click on order this srvice btn
+    2. form modal popup with student/service/promoter info, submit the form
+    3. the admin recieves a notification email about the order
+    4. the admin contact the service provider about their avaiability to do the service(manually)
+    5. the admin sends a notification email to the student to pay the service fee
+    """
+    fullname = models.CharField(max_length=255)
     email    = models.EmailField(max_length=255, null=True)
-    phone    = models.IntegerField(null=True) #TODO: SEARCH FOR ALGERIAN PHONE NUMBER APIs e.g: https://django-phonenumber-field.readthedocs.io/en/latest/index.html
-    topic    = models.CharField(max_length=255, null=True)
-    # promoter = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # service  = models.OneToOneField(Service, on_delete=models.CASCADE, related_name='service') #FIXME: SHOULD BE ONE TO MANY RELATIONSHIP WITH SERVICE MODEL
-    # dateTime = models.DateTimeField()
-    
-    # services = models.ManyToManyField(Service, blank=True)
-    
+    phone    = models.IntegerField(null=True)
+    promoter = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders')
+    service  = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='orders') #FIXME: SHOULD BE ONE TO MANY RELATIONSHIP WITH SERVICE MODEL
+    created_on = models.DateTimeField(auto_now_add=True)
+        
     def __str__(self):
         return self.fullname
-    
     
 class ContactUs(models.Model):
     fullname = models.CharField(max_length=255)
@@ -63,5 +64,5 @@ class ContactUs(models.Model):
     
     
     def __str__(self):
-        return f'Emaild by {self.fullname}'
+        return f'Email by {self.fullname} '
     

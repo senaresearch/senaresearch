@@ -1,9 +1,40 @@
 import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from '../../context/AuthContext'
 import { axiosAuth } from '../../axios'
+import { toast } from 'react-toastify';
 
 // TODO: add notifications for successful & failed changes
 const UserInfo = () => {
+  const notifyError = (message) => toast.error(message, {
+    position: "top-left",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+});
+const notifySuccess = (message) => toast.success(message, {
+    position: "top-left",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});
+const notifyWarning = (message) => toast.warning(message, {
+    position: "top-left",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});
   let {getUserData, setUserData, userData} = useContext(AuthContext)
   useEffect(() => {
     getUserData()
@@ -29,6 +60,12 @@ const UserInfo = () => {
     const initialValue = JSON.parse(saved);
     return initialValue?.bio || "";
   })
+  const [phone, setPhone] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("userData");
+    const initialValue = JSON.parse(saved);
+    return initialValue?.phone || "";
+  })
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
     // To update the localStorage data when the user changes their form info
@@ -38,6 +75,7 @@ const UserInfo = () => {
       setLastName(JSON.parse(localStorage.getItem('userData'))?.last_name)
       setEmail(JSON.parse(localStorage.getItem('userData'))?.email)
       setBio(JSON.parse(localStorage.getItem('userData'))?.bio)
+      setPhone(JSON.parse(localStorage.getItem('userData'))?.phone)
     }
   }, [userData])
   
@@ -45,7 +83,7 @@ const UserInfo = () => {
     e.preventDefault()
     let authToken = localStorage.getItem('authToken')
     try{
-        let { data } = await axiosAuth({                                                                                                                                                                                                                                                                                                    
+        let { data, status } = await axiosAuth({                                                                                                                                                                                                                                                                                                    
         url: '/users/me/',
         method: 'put',
         headers:{
@@ -57,18 +95,13 @@ const UserInfo = () => {
             "last_name": lastName,
             "email": email,
             "bio": bio,
+            "phone": phone, 
         }
     })
-    setUserData(data)
-
-    // // Retrieve the current value of the key from the local storage
-    // const currentFormData = localStorage.getItem("userData");
-
-    // // Update the value variable with the new value
-    // const updatedFormData = { ...JSON.parse(currentFormData), ...response.data };
-
-    // // Store the updated value variable in the local storage under the corresponding key
-    // localStorage.setItem("userData", JSON.stringify(updatedFormData));
+    if (status === 200){
+      setUserData(data)
+      notifySuccess('تم تحديـث بياناتك بنجاح')
+    }
     }catch(error){
         console.log(error)
     }
@@ -83,7 +116,7 @@ const UserInfo = () => {
             <input value={firstName} onChange={(e)=>setFirstName(e.target.value)} className='w-full lg:col-span-6 placeholder:text-sm placeholder:text-primary placeholder:leading-4 text-right px-2 py-2 rounded-lg bg-[#F1F3F8] ' type="text" placeholder='الاسم' />
             <input value={lastName} onChange={(e)=>setLastName(e.target.value)} className='w-full lg:col-span-6 placeholder:text-sm placeholder:text-primary placeholder:leading-4 text-right px-2 py-2 rounded-lg bg-[#F1F3F8] ' type="text" placeholder='اللقب' />
             <input value={email} onChange={(e)=>setEmail(e.target.value)} className='w-full lg:col-span-6 placeholder:text-sm placeholder:text-primary placeholder:leading-4 text-right px-2 py-2 rounded-lg bg-[#F1F3F8]' type="text" placeholder='البريد الالكتروني ' />
-            <input className='w-full lg:col-span-6 placeholder:text-sm placeholder:text-primary placeholder:leading-4 text-right px-2 py-2 rounded-lg bg-[#F1F3F8]' type="text" placeholder='رقم الهاتف' />
+            <input className='w-full lg:col-span-6 placeholder:text-sm placeholder:text-primary placeholder:leading-4 text-right px-2 py-2 rounded-lg bg-[#F1F3F8]' type="text" value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder='رقم الهاتف' />
             <textarea value={bio} onChange={(e)=>setBio(e.target.value)} className='w-full lg:col-span-full placeholder:text-sm placeholder:text-primary placeholder:leading-4 text-right px-2 py-2 rounded-lg bg-[#F1F3F8]' placeholder='نــبذة عنك' name="" id="" cols="30" rows="10"></textarea>
             <button className='bg-primary lg:col-span1 lg:col-start-6 lg:col-end-7 font-bold text-sm leading-4 text-white py-3 px-12 mt-6 w-fit rounded-lg' type="submit">تحـــديث</button>
         </form>

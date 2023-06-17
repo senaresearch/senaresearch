@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import TeacherCard from '../../components/TeacherCard'
 import SearchBar from './SearchBar'
 import { axiosAPI, axiosAccount } from '../../axios'
+import APIContext from '../../context/APIContext'
 
 
 const TeachersList = () => {
@@ -16,42 +17,31 @@ const TeachersList = () => {
               }
           })
           setPromoters(data)
+          console.log(promoters)
         }catch(error){
           console.log(error)
         }
       }
-  const [categories, setCategories] = useState(null)
-  const get_categories = async ()=>{
-    try{
-        const { data } = await axiosAPI({
-            url: `/categories`,
-            method: 'GET',
-            header: {
-                "Content-Type": "application/json",
-            }
-        })
-        setCategories(data)
-        // console.log(data)
-    }catch(error){
-        console.log(error)
-    }
-  }
-      useEffect(()=>{
-        get_promoters_data()
-        get_categories()
-      }, [])
-      // console.log(promoters[0]?.major)
-      // console.log(categories[0]?.name)
+  
+  const {get_categories, categories} = useContext(APIContext)
+  useEffect(()=>{
+    get_promoters_data()
+    get_categories()
+  }, [])
+
   return (
     <div className=' flex flex-col gap-14 '>
-        <SearchBar categories={categories} promoters={promoters} />
+        <SearchBar categories={categories} setPromoters={setPromoters}/>
         {/* TEACHERS LIST */}
-        <div className='grid grid-cols-1 mx-auto w-5/6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 w-5/6 mx-auto gap-y-24 gap-x-16 '>
+        <div className={promoters ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 w-5/6 mx-auto gap-y-24 gap-x-16 ' : ' flex justify-center items-center text-right mb-14'}>
             {
-              promoters &&
+              promoters ?
                 promoters.map((promoter, index)=>{
                     return <TeacherCard promoter={promoter} key={index}/>
                 })
+                :
+                  <h1 className=' text-xl'>...ليست هنالك أي نتيجـة</h1>
+                
             }
         </div>
     </div>

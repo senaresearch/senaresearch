@@ -9,48 +9,9 @@ import { axiosAccount } from '../../axios';
 
 
 const BestTeachers = () => {  
-  const [settingsState, setSettingsState] = useState()
-  function handleResize() {
-    if (window.innerWidth <= 640){
-      setSettingsState({
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        adaptiveHeight: true,
-      })
-        
-    }else if(window.innerWidth <= 768){
-      setSettingsState({
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        adaptiveHeight: true,
-      })
-        
-    }else{
-      setSettingsState({
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        adaptiveHeight: true,
-      })
-    }
-  }
-  window.addEventListener('resize', handleResize)
-  useEffect(()=>{
-    window.addEventListener('load', handleResize)
-  }, [])
   const customSlider = useRef();
 
-
   //TODO: Disable next/prev buttons when reach the start/end of the slides number
-  // const slick_track = document.querySelector('.slick-track').childElementCount 
   const [promoters, setPromoters] = useState(null)
   const get_promoters_data = async ()=>{
       try{
@@ -69,34 +30,68 @@ const BestTeachers = () => {
       useEffect(()=>{
         get_promoters_data()
       }, [])
+      console.log(promoters)
 
+
+      let settings = {
+        initialSlide: 0,
+        dots: false,
+        infinite: true,
+        speed: 500,
+        adaptiveHeight: true,
+        autoplay: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            }
+          },
+          {
+            breakpoint: 800,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
   return (
-    <div className='text-primary flex flex-col gap-4 sm:gap-14 my-20 overflow-hidden'>
+    <div className='text-primary flex flex-col gap-4 my-20 overflow-hidden'>
       <div className='text-center'>
         <h1 className=' font-semibold text-[25px]  sm:text-[50px] leading-[30.47px] sm:leading-[60.95px] '>! أهم الأســـاتذة </h1>
         {/* TEXT HEAD ANIMATION */}
         <div className='hidden'></div>
       </div>
       {/* TEACHERS CARDS */}
-        <div className='w-4/6 mx-auto '>
-          <Slider ref={slider => (customSlider.current = slider)} {...settingsState} className=''>
+        <div className='w-4/6 mx-auto sm:w-[95%] xl:w-[85%]  bg-gray-20'>
+          <Slider ref={slider => (customSlider.current = slider)} {...settings}>
             {
               promoters && promoters.map(promoter=>(
                 <TeacherCard key={promoter?.id} promoter={promoter} />
-
               ))
             }
           </Slider>
         </div>
       {/* CARDS SWIP BTNs */}
-        <div className='flex justify-evenly items-center w-4/6 mx-auto'>
-          <button type='button' onClick={() => customSlider.current.slickPrev()}  className='btn cursor-pointer flex justify-center items-center w-[35px] h-[35px] sm:w-[55px] sm:h-[55px] bg-primary rounded-full'>
-            <svg className='w-4 h-4 sm:w-[13px] sm:h-[13px]' viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className='flex justify-evenly items-center w-3/6 mx-auto'>
+          <button type='button' onClick={() => customSlider.current.slickPrev()}  className='btn cursor-pointer flex justify-center items-center w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] bg-primary rounded-full'>
+            <svg className='w-5 h-5' viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11.4651 21.7074L1.78509 11.9999L11.4651 2.29236" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <button onClick={() => customSlider.current.slickNext()} type='button'  className=' cursor-pointer flex justify-center items-center w-[35px] h-[35px] sm:w-[55px] sm:h-[55px] bg-primary rounded-full'>
-            <svg className='w-4 h-4 sm:w-[13px] sm:h-[13px]' viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button onClick={() => customSlider.current.slickNext()} type='button'  className=' cursor-pointer flex justify-center items-center w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] bg-primary rounded-full'>
+            <svg className='w-5 h-5' viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.53491 21.7074L11.2149 11.9999L1.53491 2.29236" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>

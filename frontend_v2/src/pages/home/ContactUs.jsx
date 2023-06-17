@@ -1,34 +1,68 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { axiosAPI } from '../../axios'
+import { toast } from 'react-toastify';
 
 const ContactUs = () => {
-  const [emailDetails, setEmailDetails] = useState(()=>({
-    fullname: '',
-    email: '',
-    phone: '',
-    message: '',
-  }))
+  const notifyError = (message) => toast.error(message, {
+    position: "top-left",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+  const notifySuccess = (message) => toast.success(message, {
+      position: "top-left",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+  });
+  const notifyWarning = (message) => toast.warn(message, {
+      position: "top-left",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+  });
+  const [responses, setResponses] = useState({})
+  
   const send_email = async (event)=>{
     event.preventDefault()
+    if(event.target.fullname.value === '') notifyWarning('الاسم الكامل: قد لا يكون هذا الحقل فارغا');
+    if(event.target.email.value === '') notifyWarning('البريد الإلكنروني: قد لا يكون هذا الحقل فارغا');
+    if(event.target.phone.value === '') notifyWarning('رقم الهاتف: قد لا يكون هذا الحقل فارغا');
+    if(event.target.message.value === '') notifyWarning('رسالتك: قد لا يكون هذا الحقل فارغا');
     try{
-        const { data } = await axiosAPI({
+        const {data} = await axiosAPI({
             url: `/contact-us`,
             method: 'post',
             header: {
                 "Content-Type": "application/json",
             },
             data: {
-              fullname: emailDetails?.fullname,
-              email: emailDetails?.email,
-              phone: emailDetails?.phone,
-              message: emailDetails?.message,
+              fullname: event.target.fullname.value,
+              email: event.target.email.value,
+              phone: event.target.phone.value,
+              message: event.target.message.value,
             }
         })
-        setEmailDetails(data)
+        typeof(data)=== 'string' && notifySuccess('تم إرسال بريدك الإلكتروني بنجاح.')
       }catch(error){
-        console.log(error)
+        console.log('error.data.fullname')
       }
     }
+
+
+
   return (
     <div id='contactUs' className=''>
       <div className='text-center sm:mb-24'>
@@ -38,11 +72,11 @@ const ContactUs = () => {
       </div>
       {/* CONTACT FORM */}
       <form onSubmit={send_email} className=' flex flex-col gap-8  font-[Montserrat-Arabic] font-normal text-[15px] leading-[18.29px]  sm:text-[20px] sm:leading-[26.57px] w-[80%] sm:w-[70%] my-16 mx-auto bg--300'>
-        <input value={emailDetails?.name} onChange={(e)=>setEmailDetails(prev=>({...prev, fullname: e.target.value}))} type="text" required placeholder='الإسم الكـامل' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6' />
-        <input value={emailDetails?.email} onChange={(e)=>setEmailDetails(prev=>({...prev, email: e.target.value}))} type="email" required placeholder='البريد الإلكتروني' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6'   />
+        <input type="text" id='fullname' name='fullname'  placeholder='الإسم الكـامل' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6' />
+        <input id='email' name='email' type="email" placeholder='البريد الإلكتروني' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6'   />
         {/* FIXME : change the type of the phone input from text to number */}
-        <input value={emailDetails?.phone} onChange={(e)=>setEmailDetails(prev=>({...prev, phone: e.target.value}))} type="text" required placeholder='رقم الهــــاتف' className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6'   />
-        <textarea value={emailDetails?.message} onChange={(e)=>setEmailDetails(prev=>({...prev, message: e.target.value}))} className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6' required  name="" id="" placeholder='رسالتـــكـــــ'  cols="30" rows="10"></textarea>
+        <input id='phone' name='phone' type="number" placeholder='رقم الهــــاتف' className=' appearance-none rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6'   />
+        <textarea className=' rounded-lg bg-[#F8F1F1] text-right w-full placeholder:text-primary py-4 px-6'   name="message" id="message" placeholder='رسالتـــكـــــ'  cols="30" rows="10"></textarea>
         <button type="submit" className='text-primary text-[18px] sm:text-[30px] mt-8 px-14 py-2 border-2 border-primary w-fit mx-auto rounded-2xl leading-[21.94px] sm:leading-[38.76px] font-normal'>إرســــال</button>
       </form>
     </div>

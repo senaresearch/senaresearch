@@ -7,15 +7,15 @@ from django.contrib.auth import get_user_model
 Promoter = get_user_model()
 class PromoterAdmin(UserAdmin):
     add_form = PromoterCreationForm
-    form = PromoterCreationForm
+    form = PromoterChangeForm
     model = Promoter
-    list_display = ["email", "username", 'id'] #to control which fields are displayed on the change list page of the admin
-    readonly_fields = ["email", 'bio', "major", "rank", "academic_division", 'degree',]
+    list_display = ["email", "username", 'id', 'is_active', 'major',] #to control which fields are displayed on the change list page of the admin
+    # readonly_fields = [ 'email', 'bio', 'image', "major", "rank", "academic_division", 'degree','last_login', 'date_joined', 'phone']
     fieldsets = [
         (
             'Basic Information',
             {
-                "fields": ["username", "email", 'bio'],
+                "fields": ["username", "email", 'first_name', 'last_name', 'bio', 'phone', 'image'],
             },
         ),
         (
@@ -25,9 +25,15 @@ class PromoterAdmin(UserAdmin):
             },
         ),
         (
-            "Status",
+            "Permissions",
             {
-                "fields": ["status",],
+                "fields": ["is_active", "is_superuser",],
+            },
+        ),
+        (
+            "Other Details",
+            {
+                "fields": ['last_login', 'date_joined'],
             },
         ),
         

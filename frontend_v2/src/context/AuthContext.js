@@ -1,7 +1,7 @@
-import {createContext, useState} from 'react'
+import {createContext, useState, useEffect} from 'react'
 import {axiosAuth} from '../axios'
 import {useNavigate} from 'react-router-dom'
-// import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 
@@ -11,36 +11,36 @@ export default AuthContext;
 
 export const AuthProvider = ({children})=>{
     const navigate = useNavigate()
-    // const notifyError = (message) => toast.error(message, {
-    //     position: "top-left",
-    //     autoClose: 6000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "colored",
-    // });
-    // const notifySuccess = (message) => toast.success(message, {
-    //     position: "top-left",
-    //     autoClose: 6000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "colored",
-    // });
-    // const notifyWarning = (message) => toast.warning(message, {
-    //     position: "top-left",
-    //     autoClose: 6000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "colored",
-    // });
+    const notifyError = (message) => toast.error(message, {
+        position: "top-left",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+    });
+    const notifySuccess = (message) => toast.success(message, {
+        position: "top-left",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    const notifyWarning = (message) => toast.warning(message, {
+        position: "top-left",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
 	const [authToken, setAuthToken] = useState(()=>localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null)
 
 	const loginUser = (e)=>{
@@ -61,8 +61,10 @@ export const AuthProvider = ({children})=>{
             localStorage.setItem('authToken', response.data['auth_token'])
             setAuthToken(response.data['auth_token'])
             navigate('/dashboard/info')
+            notifySuccess('تم تسجيل الدخول بنجـاح')
         }).catch((error)=>{
-            console.log(error)
+            console.log(error.response.data)
+            notifyError(error.response.data['non_field_errors'][0])
         })
     }
     const [userData, setUserData] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
@@ -84,30 +86,13 @@ export const AuthProvider = ({children})=>{
         })
     }
 
-    // const getUserData = async ()=>{
-    //     try {
-    //         const response = await axiosAuth({                                                                                                                                                                                                                                                                                                    
-    //             url: '/users/me/',
-    //             method: 'get',
-    //             headers:{
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': `Token ${authToken}`
-    //             }
-    //         })
-    //         setUserData(response.data)
-    //         localStorage.setItem('userData', JSON.stringify(response.data))
-    //     }catch(ErrorExeption){
-    //         console.log(ErrorExeption)
-    //     }
-    // }
-
     const RegisterNewUser = (e)=>{
         e.preventDefault()
         axiosAuth({                                                                                                                                                                                                                                                                                                    
             url: '/users/',
             method: 'post',
             headers:{
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
             data:{
                 "email": e.target.email.value,
@@ -116,14 +101,19 @@ export const AuthProvider = ({children})=>{
                 "re_password": e.target.re_password.value,
                 "first_name": e.target.first_name.value,
                 "last_name": e.target.last_name.value,
+                "image": e.target.image.files[0],
+                "phone": e.target.phone.value,
             }
         }
         ).then((response)=>{
             navigate('/login')
-            console.log('A verification Email have sent successfully, take a look.')
+            notifySuccess('تم انشاء حساب جديد - قم بتسجيل الدخول بعد تفعيل حسابك من طرفنا')
+            console.log(response.data)
         }).catch((error)=>{
             let data = error.response.data
-            console.log(error)
+            console.log(data)
+            // notifyError(error.response.data['non_field_errors'][0])
+            notifyError(error.response.data['image'][0])
             
         })
     }
@@ -167,13 +157,17 @@ export const AuthProvider = ({children})=>{
             // It's recommended to use redirect in loaders and actions rather than useNavigate in your components, 
             // When the redirect is in response to data
             navigate('/login')
-            console.log('You loged out successfully.')
-        }).catch((err)=>{
+            notifySuccess('تم تسجيل الخروج بنجـاح')
+            console.log(response)
+        }).catch((error)=>{
+            console.log(error)
             console.log("this is error")
             console.log('Something went wrong when you logged out')
+            console.log(error.response.data)
+            notifyError(error.response.data['non_field_errors'][0])
         })
     }
-
+    
     const passwordChange = async (e, old_password, new_password1, new_password2) => {
         e.preventDefault()
         let access_token = localStorage.getItem('accessToken')

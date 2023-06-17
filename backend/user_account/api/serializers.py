@@ -16,27 +16,23 @@ class PromoterSerializer():
     class Meta:
         model = Promoter
         fields = ('first_name', 'last_name', 'email' , 'bio', 'image')
-        # fields = '__all__'
 class CurrentPromoterSerializer(UserSerializer):
     class Meta(UserSerializer.Meta):
         model = Promoter
-        fields = ('first_name', 'last_name', 'email' , 'bio', 'image')
-        # fields = '__all__'
+        fields = ('first_name', 'last_name', 'email' , 'bio', 'image', 'major', 'id', 'phone')
         
 
 
 from djoser.serializers import UserCreatePasswordRetypeSerializer, UserCreateSerializer
 
-# class CustomUserCreateSerializer(UserCreateSerializer):
-    
-#     class Meta(UserCreateSerializer.Meta):
-#         model = Promoter
-#         fields = ('email', 'username', 'password', 'first_name', 'last_name',)
+class CustomPromoterCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model = Promoter
+        fields = ('email', 'username', 'password', 'first_name', 'last_name', 'image', 'phone')
         
 class CustomUserCreatePasswordRetypeSerializer(UserCreatePasswordRetypeSerializer):
-    
     class Meta(UserCreatePasswordRetypeSerializer.Meta):
         # model = Promoter
-        fields = ('email', 'username', 'first_name', 'last_name','password',)
+        fields = ('email', 'username', 'first_name', 'last_name','password', 'image', 'phone')
         
     
