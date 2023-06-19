@@ -123,8 +123,7 @@ const TeacherProfile = (props) => {
                                         {promoter?.bio}
                         </p>
                     </div>
-                    {/* FIXME: replace http://127.0.0.1:8000/ with the value in .env file */}
-                    <div className='xl:w-2/6 w-full mb-6 sm:-mb-3 bg-red-50'><img className='w-full h-auto' src={`http://127.0.0.1:8000/${promoter?.image}`} alt="" /></div>
+                    <div className='xl:w-2/6 w-full mb-6 sm:-mb-3 bg-red-50'><img className='w-full h-auto' src={`https://backend.senaresearch-dz.com/${promoter?.image}`} alt="" /></div>
                 </div>
             </div>
 
@@ -145,7 +144,7 @@ const TeacherProfile = (props) => {
                                     <div class="bg-gray-40 relative text-center shadow-xl my- rounded-xl">
                                         {/* PROMOTER PICTURE */}
                                         <div class="h-full w-full  ">
-                                            <img src={`http://127.0.0.1:8000/${service?.image}`} alt='service' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
+                                            <img src={`https://backend.senaresearch-dz.com/${service?.image}`} alt='service' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
                                         </div>
                                         {/* PROMOTER DETAILS */}
                                         <div class=" m-4">

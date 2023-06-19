@@ -2,15 +2,15 @@ import axios from "axios";
 
 
 export const axiosAPI = axios.create({
-    baseURL: 'http://127.0.0.1:8000/sena-api',
+    baseURL: 'https://backend.senaresearch-dz.com/sena-api',
   });
 
 
 export const axiosAuth = axios.create({
-    baseURL: 'http://127.0.0.1:8000/auth',
+    baseURL: 'https://backend.senaresearch-dz.com/auth',
   });
 
 export const axiosAccount = axios.create({
-    baseURL: 'http://127.0.0.1:8000/accounts',
+    baseURL: 'https://backend.senaresearch-dz.com/accounts',
   });
 
