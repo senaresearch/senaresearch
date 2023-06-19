@@ -2,15 +2,15 @@ import axios from "axios";
 
 
 export const axiosAPI = axios.create({
-    baseURL: 'https://backend.senaresearch-dz.com/sena-api',
+    baseURL: 'https://sena-reserach.vercel.app/sena-api',
   });
 
 
 export const axiosAuth = axios.create({
-    baseURL: 'https://backend.senaresearch-dz.com/auth',
+    baseURL: 'https://sena-reserach.vercel.app/auth',
   });
 
 export const axiosAccount = axios.create({
-    baseURL: 'https://backend.senaresearch-dz.com/accounts',
+    baseURL: 'https://sena-reserach.vercel.app/accounts',
   });
 
