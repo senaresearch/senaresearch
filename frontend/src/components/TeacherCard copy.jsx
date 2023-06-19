@@ -17,7 +17,7 @@ const TeacherCard = ({promoter}) => {
                 <div class="flex flex-wrap justify-center">
                     <div class="w-full flex justify-center">
                         <div class="relative">
-                            <img src={`https://sena-reserach.vercel.app/${promoter?.image}`} alt='promoter' class="shadow-xl rounded-full align-middle border-[3px] border-primary absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px] "/>
+                            <img src={`https://backend.senaresearch-dz.com/${promoter?.image}`} alt='promoter' class="shadow-xl rounded-full align-middle border-[3px] border-primary absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px] "/>
                         </div>
                     </div>
                     <div class="w-full text-center mt-20">

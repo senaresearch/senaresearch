@@ -7,7 +7,7 @@ const TeacherCard = ({promoter}) => {
         <div class="bg-gray-40 relative text-center shadow-xl my-8 rounded-xl">
             {/* PROMOTER PICTURE */}
             <div class="h-36 w-36 absolute left-[50%] top-[-15%] translate-x-[-50%]">
-                <img src={`https://sena-reserach.vercel.app/${promoter?.image}`} alt='promoter' class=" w-full h-full shadow-xl rounded-full align-middle border-[3px] border-primary"/>
+                <img src={`https://backend.senaresearch-dz.com/${promoter?.image}`} alt='promoter' class=" w-full h-full shadow-xl rounded-full align-middle border-[3px] border-primary"/>
             </div>
             {/* PROMOTER DETAILS */}
             <div class="pt-24">

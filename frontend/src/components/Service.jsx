@@ -37,7 +37,7 @@ const Service = ({category}) => {
         {/* <div class="bg-gray-40 relative text-center shadow-xl my- rounded-xl"> */}
             {/* PROMOTER PICTURE */}
             <div class="h-full w-full  ">
-                <img src={`https://sena-reserach.vercel.app/${category?.image}`} alt='category' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
+                <img src={`https://backend.senaresearch-dz.com/${category?.image}`} alt='category' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
             </div>
             <h3 class="text-xl mx-auto my-8 text-slate-700 font-bold leading-normal ">{category?.name}</h3>
                 
