@@ -27,6 +27,9 @@ const OurServices = () => {
   useEffect(()=>{
     get_categories()
   }, [])
+  useEffect(()=>{
+    console.log(categories)
+  }, [categories])
   return (
     <div id='ourServices' className='pb-16 pt-10 '>
       <div className='text-center mb-16 sm:mb-24'>
@@ -35,7 +38,7 @@ const OurServices = () => {
         <div className='hidden'></div>
       </div>
       {/* SERVICES */}
-      <div id='servicesList' className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-12 gap-y-24 w-4/6 md:w-5/6   mx-auto'>
+      <div id='servicesList' className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-12 gap-y-24 w-4/6 md:w-5/6 mx-auto'>
         {
           categories && categories.map(category=>(
             <Service key={category?.id} category={category} />

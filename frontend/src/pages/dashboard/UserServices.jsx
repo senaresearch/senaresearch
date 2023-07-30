@@ -103,6 +103,7 @@ const UserServices = () => {
             })
             setNewServiceModal(false)
             setServices(data)
+
         }catch(error){
             console.error(error)
         }
@@ -147,9 +148,9 @@ const UserServices = () => {
                             <th scope="col" class="px-6 py-3">
                                 الحالة  
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {/* <th scope="col" class="px-6 py-3">
                                 وصف الخدمة  
-                            </th>
+                            </th> */}
                             <th scope="col" class="px-6 py-3">
                                 االسعر  
                             </th>
@@ -162,11 +163,11 @@ const UserServices = () => {
                             <th scope="col" class="px-6 py-3">#</th>
                         </tr>
                     </thead>
-                    <tbody className='text-right text-base overflow-auto max-h-96'>  
+                    <tbody className='text-center text-base overflow-auto max-h-96'>  
                         {
                             services.length !== 0 &&
                             services?.map((service, index) =>(
-                                <tr key={service?.id} class="bg-white transition duration-300 ease-in-out cursor-pointer border-b hover:bg-gray-50">
+                                <tr key={service?.id} class="bg-white transition duration-300 ease-in-out cursor-pointer border-b h-4 overflow-hidden text-clip w-full hover:bg-gray-50">
                                     <td class="flex items-center px-6 py-4 space-x-3">
                                         <button onClick={()=>{setRemoveModal(true);setSelectedService(service)}} type='button' class="font-medium text-red-600 dark:text-red-500 hover:underline">
                                             حذف
@@ -181,9 +182,9 @@ const UserServices = () => {
                                             'يتم معالجته'
                                         }
                                     </td>
-                                    <td class="px-6 py-4">
+                                    {/* <td class="px-6 py-4 w-full h-8 bg-red-300">
                                     {service?.description}
-                                    </td>
+                                    </td> */}
                                     <td class="px-6 py-4">
                                         {service?.price + ' DA'}
                                     </td>
@@ -236,7 +237,7 @@ const UserServices = () => {
                             <span onClick={(e)=>{setSelectedService(prevState=>({...prevState, image:''})); setFile(null); e.target.parentElement.parentElement.parentElement.previousElementSibling.value=''}} className=' absolute p-1 rounded-full hover:bg-gray-300 shadow-md transition ease-in-out cursor-pointer right-1 top-1 duration-700'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </span>
-                            <img className='w-full h-auto rounded-lg shadow-xl' src={`${selectedService?.image ? 'https://backend.senaresearch-dz.com/'+selectedService?.image : file && URL.createObjectURL(file)}`} alt='service'/>
+                            <img className='w-full h-auto rounded-lg shadow-xl' src={`${selectedService?.image ? process.env.REACT_APP_DOMAIN+selectedService?.image : file && URL.createObjectURL(file)}`} alt='service'/>
                         </div>
                     </div>
                     

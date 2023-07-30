@@ -1,16 +1,16 @@
 import React from 'react'
-import whyAreWe from '../../assets/whyAreWe.jpg'
+import whyAreWee from '../../assets/whyAreWee.png'
 
 
 const AboutUs = () => {
   const bgImage = {
-    backgroundImage: `url(${whyAreWe})`,
+    backgroundImage: `url(${whyAreWee})`,
     isolation: 'isolate'
   }
   return (
     <div id={'aboutUs'} className='bg-white h-fit font-[Montserrat-Arabic] '>
       {/* WHO ARE WE */}
-      <div className='flex flex-col justify-center items-center gap-6 sm:gap-16 w-4/6 mx-auto my-16 h-4/6'>
+      <div className='flex flex-col justify-center items-center gap-6 sm:gap-16 w-11/12 mx-auto my-16 h-4/6'>
         <div>
           <h1 className=' font-semibold text-[25px] sm:text-[50px] leading-[30.47px] sm:leading-[60.95px] text-primary '>من نحنـــــــــ ؟</h1>
           {/* TEXT HEAD ANIMATION */}
@@ -19,10 +19,7 @@ const AboutUs = () => {
         <div className='flex flex-col justify-center items-center gap-10 '>
           <div className='sm:w-[324px] w-[109px] h-0 border-[2px] border-primary '></div>
           <p className='sm:font-medium mx-6 font-normal text-[12px] sm:text-[20px] leading-[20.93px] sm:leading-[41.08px] text-primary text-center font-[Montserrat-Arabic]'>
-            الجامعيين الراغبين في الحصول على خدمة في أسرع وقت و بجودة عالية من طرف عارضي الخدمة هي منصة خدمات تعليمية موجهة للطلبة الجامعيين الراغبين في توظيف مهاراتهم و خبراتهم في تقديم خدمات مقابل الحصول على دخل. 
-            <br />
-            المتمثلين في أساتذة جامعيين, طلبة الدؤاسات العليا, حاملي الشهادات لذلك هذه المنصة تعتبر وسيط بين الطرفين, كما تلعب دور المساعد للجامعة (الأستاذ و الطالب )
-            
+          هي منصة خدمات تعليمية موجهة للطلبة الجامعيين الراغبين في الحصول على خدمة في اسرع وقت و بجودة عالية من طرف أساتذة جامعيين، دكاترة و حاملي الشهادات ذو كفاءة و خبرة مهنية فالمنصة تعتبر وسيط بين الطرفين كما تلعب دور المساعد للجامعة
           </p>
           <div className='sm:w-[324px] w-[109px] h-0 border-[2px] border-primary '></div>
         </div>
@@ -39,7 +36,7 @@ const AboutUs = () => {
           </div>
           {/* THREE FETUARES */}
           <div className='flex items-center justify-evenly'>
-            <div className='flex flex-col justify-center items-center gap-1 sm:gap-4 font-semibold text-[15px] sm:text-[20px] leading-[30.6px] sm:leading-[40.8px]'>
+            <div className='flex flex-col justify-center items-center gap-4 font-semibold text-[15px] sm:text-[20px] leading-[30.6px] sm:leading-[40.8px]'>
               <div className='  flex justify-center items-center w-[60px] h-[60px] rounded-full ' style={{background: 'radial-gradient(84.62% 84.62% at 50% 50%, #5A0057 0%, #9747FF 100%)'}} >
                 <svg className='w-[24.39px] h-[24.39px] sm:w-[33px] sm:h-[33px] '   viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M21.4999 39.4167C31.3541 39.4167 39.4166 31.3542 39.4166 21.5C39.4166 11.6459 31.3541 3.58337 21.4999 3.58337C11.6458 3.58337 3.58325 11.6459 3.58325 21.5C3.58325 31.3542 11.6458 39.4167 21.4999 39.4167Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

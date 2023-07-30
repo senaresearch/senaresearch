@@ -23,7 +23,7 @@ class Service(models.Model):
     ]
     
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(max_length=150)
     price = models.FloatField()
     image = models.ImageField(upload_to='services')
     status = models.CharField(max_length=25, choices=STATUS, default=STATUS[2][0])
@@ -66,3 +66,48 @@ class ContactUs(models.Model):
     def __str__(self):
         return f'Email by {self.fullname} '
     
+
+
+
+from django.conf import settings
+from django.db.models.signals import post_save, pre_save
+
+from django.core.mail import send_mail, mail_admins
+
+def post_save_service(sender, instance, created, **kwargs):
+    if created:
+        mail_admins(
+            subject='New Service Created',
+            message=f'{instance.promoter.username} created a new service',
+        )
+        instance.save()
+
+
+def pre_save_service(sender, instance, **kwargs):
+    if instance.pk:  # Check if the instance is already saved (not a new record)
+        try:
+            original_instance = sender.objects.get(pk=instance.pk)  # the user object before applying the changes(updates) 
+            if instance.status != original_instance.status:
+                if instance.status == 'Approved':
+                    send_mail(
+                        subject='Congratulations - Your service has been successfully Approved',
+                        message='Your account has been activated.',
+                        from_email='sena.research@gmail.com',
+                        recipient_list=[instance.promoter.email],
+                        fail_silently=False,
+                    )
+                if instance.status == 'Rejected':
+                    send_mail(
+                        'Unfortunately - Your service has been rejected',
+                        'Your account has been activated.',
+                        'sena.research@gmail.com',
+                        [instance.promoter.email],
+                        fail_silently=False,
+                    )
+        except sender.DoesNotExist:
+            pass
+        
+    
+
+post_save.connect(post_save_service, sender=Service)
+pre_save.connect(pre_save_service, sender=Service)

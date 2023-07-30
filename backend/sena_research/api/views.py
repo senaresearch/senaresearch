@@ -44,7 +44,7 @@ def service_delete(request, serviceID):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def service_create(request):
-    print(request.data)
+    # print(request.data)
     try:
         newService = Service.objects.create(
                     name=request.data.get('name'),
@@ -60,12 +60,12 @@ def service_create(request):
     except(Exception):
         return Response()
     
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_categories(request):
     categories = Category.objects.all()
     categories_serializer = CategorySerializer(categories, many=True)
+    print(categories_serializer.data)
     return Response(categories_serializer.data)
 
 @api_view(['GET'])
@@ -73,8 +73,6 @@ def get_categories(request):
 def get_promoter_majors(request):
     majors = Promoter.objects.values_list('major', flat=True).distinct() 
     return Response(majors)
-
-
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -92,8 +90,6 @@ def contact_us(request):
           )
         return Response('Your email has been sent succesfully.')
     return Response(message_serializer.errors)
-
-
 
 @api_view(['GET'])
 @permission_classes([AllowAny])

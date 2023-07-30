@@ -23,6 +23,7 @@ const BestTeachers = () => {
               }
           })
           setPromoters(data)
+          console.log(promoters.length)
         }catch(error){
           console.log(error)
         }
@@ -41,7 +42,7 @@ const BestTeachers = () => {
         adaptiveHeight: true,
         autoplay: true,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 1,
         responsive: [
           {
             breakpoint: 1024,

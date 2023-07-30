@@ -123,15 +123,13 @@ const TeacherProfile = (props) => {
                                         {promoter?.bio}
                         </p>
                     </div>
-                    <div className='xl:w-2/6 w-full mb-6 sm:-mb-3 bg-red-50'><img className='w-full h-auto' src={`https://backend.senaresearch-dz.com/${promoter?.image}`} alt="" /></div>
+                    <div className='xl:w-2/6 w-full mb-6 sm:-mb-3 bg-red-5'><img className='w-full h-auto' src={`${process.env.REACT_APP_DOMAIN}${promoter?.image}`} alt="" /></div>
                 </div>
             </div>
-
             {/* TEACHER SERVICES */}
             <div className='flex flex-col gap-10 w-full bg-slate-'>
                 <h1 className='font-semibold font-[Montserrat-Arabic] lg:text-[35px] lg:leading-[42.66px] md:text-[25px] md:leading-[30.47px] text-[22px] leading-[25.94px] text-right py-2 pr-2 border-r-4 border-primary '> الخــــدمات المقدمة </h1>
-                
-                <div className='grid grid-cols- gap-8 items-end 
+                <div className='grid grid-cols- gap-8 items-baseline 
                                 sm:grid-cols-2
                                 lg:grid-cols-3
                                 '>
@@ -139,12 +137,12 @@ const TeacherProfile = (props) => {
                         services ?
                         services.map(service =>(
                             <div className='shadow-xl rounded-[14px] bg-white hover:shadow-2xl transition-shadow ease-in-out duration-300
-                                            flex flex-col w-full'>
+                                            flex flex-col w-full h-full'>
                                 <div >
-                                    <div class="bg-gray-40 relative text-center shadow-xl my- rounded-xl">
+                                    <div class="bg-gray-40 relative text-center rounded-xl">
                                         {/* PROMOTER PICTURE */}
                                         <div class="h-full w-full  ">
-                                            <img src={`https://backend.senaresearch-dz.com/${service?.image}`} alt='service' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
+                                            <img src={`${process.env.REACT_APP_DOMAIN}${service?.image}`} alt='service' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
                                         </div>
                                         {/* PROMOTER DETAILS */}
                                         <div class=" m-4">
@@ -157,7 +155,6 @@ const TeacherProfile = (props) => {
                                                     </svg>
                                                     <p className='text-sm'> {service?.category?.name} </p>
                                                 </div>
-                                                {/* <div c></div> */}
                                                 <div className='flex border-l-2 pl-2 items-center gap-2 cursor-pointer pointer'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -168,15 +165,15 @@ const TeacherProfile = (props) => {
                                         </div>
                                         {/* BIO SECTION */}
                                         <div class="mt-4 border-t border-slate-200">
-                                            <div class="w-full px-4 flex flex-col justify-evenly h-fit">
-                                                <p class="font-light leading-relaxed text-right text-slate-600 my-4">{isTextExpanded ? service?.description : service?.description.slice(0, 150)}
-                                                    {service?.description.length > 170 && (
+                                            <div class="w-full px-4 flex flex-col justify-evenl justify-between h-full">
+                                                <p class="font-light min-h-[110px] leading-relaxed text-right text-slate-600 my-4">{service?.description}
+                                                    {/* {service?.description.length > 170 && (
                                                         <button onClick={toggleExpansion} className='text-slate-700 font-bold mt-2 underline text-center w-full'>
                                                             {isTextExpanded ? 'إقرا أقل' : 'إقرا أكثـر'}
                                                         </button>
-                                                        )}
+                                                        )} */}
                                                 </p>
-                                                <button onClick={()=>{setOrderDetails({fullname:'', email:'', phone:null, service:service}); setIsOpen(true)}} type='button' class=" text-white bg-primary rounded-2xl py-2 px-4 w-fit m-auto mt-3 mb-4"> طــلب الخدمة </button>
+                                                <button onClick={()=>{setOrderDetails({fullname:'', email:'', phone:null, service:service}); setIsOpen(true)}} type='button' class=" text-white bg-primary self-end rounded-2xl py-2 px-4 w-fit m-auto mt-3 mb-4"> طــلب الخدمة </button>
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +181,7 @@ const TeacherProfile = (props) => {
                             </div>
                         ))
                         :
-                        <h1>There are no services here</h1>
+                        <h1>ليست هنالك أي خدمات أقدمها</h1>
                     }
                 </div>
             </div>

@@ -138,7 +138,7 @@ EMAIL_USE_SSL = False
 #  prefixes the subject with the value below when using mail_admins() method
 EMAIL_SUBJECT_PREFIX = 'Contact Form - '
 # Django emails these people(admins) when using mail_admins() method
-ADMINS = [("zakaria", "brahimi.zakaria.abdessamed@gmail.com"), ("Mary", "mary@example.com"), ]
+ADMINS = [("zakaria", "brahimi.zakaria.abdessamed@gmail.com"), ("Mary", "mary@example.com"), ('admin', 'sena.research@gmail.com')]
 
 
 # CHARGILY SETTINGS

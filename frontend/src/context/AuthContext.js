@@ -113,7 +113,7 @@ export const AuthProvider = ({children})=>{
             let data = error.response.data
             console.log(data)
             // notifyError(error.response.data['non_field_errors'][0])
-            notifyError(error.response.data['image'][0])
+            // notifyError(error.response.data['image'][0])
             
         })
     }

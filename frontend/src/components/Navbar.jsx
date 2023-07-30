@@ -1,4 +1,3 @@
-import Button from "./Button"
 import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import { HashLink } from 'react-router-hash-link';
@@ -46,7 +45,7 @@ const Navbar = () => {
                 absolute right-0 md:static 
                 md:z-auto z-[-1] w-full md:pl-0 pl-9 
                 transition-all duration-500 ease-in-out
-                ${isOpen ? 'top-16 ':'top-[-250%]'}`
+                ${isOpen ? 'top-12 ':'top-[-350%]'}`
                 }>
                
                 <HashLink smooth to={`/#contactUs`}>تواصل معنا</HashLink>

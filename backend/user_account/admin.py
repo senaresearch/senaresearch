@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import PromoterCreationForm, PromoterChangeForm
 from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
+from .models import Email
 
 Promoter = get_user_model()
 class PromoterAdmin(UserAdmin):
@@ -45,9 +46,13 @@ class PromoterAdmin(UserAdmin):
     # model = Promoter
     # list_display = ["email", "username", 'image']
     # list_display_links = ["username", 'email']
-# admin.site.register(Promoter)
+
+class CustomEmailAdmin(admin.ModelAdmin):
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 admin.site.register(Promoter, PromoterAdmin)
+admin.site.register(Email, CustomEmailAdmin)
 admin.site.unregister(Group)
 
 

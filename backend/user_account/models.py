@@ -35,14 +35,31 @@ class Promoter(AbstractUser):
     def __str__(self):
         return self.username
     
+class Email(models.Model):
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    # from_email: A string. If None, Django will use the value of the DEFAULT_FROM_EMAIL setting.
+    # recipient_list : determined in the signal
+    html_message = models.TextField(blank=True)
     
+    def __str__(self):
+        return self.subject
+
 from django.conf import settings
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 
 from django.core.mail import send_mail, mail_admins
 
 def post_save_receiver(sender, instance, created, **kwargs):
     if created and not instance.is_superuser:
+        # if instance.is_active:
+        #     send_mail(
+        #     'New Book Added',
+        #     f'A new book "{"instance.title"}" by {"instance.author"} has been added.',
+        #     'admin@example.com',
+        #     ['admin@example.com'],
+        #     fail_silently=False,
+        # )
         mail_admins(
             subject='New Promoter Created',
             message=f'A new user created by {instance.username}',
@@ -50,4 +67,24 @@ def post_save_receiver(sender, instance, created, **kwargs):
         instance.is_active = False
         instance.save()
 
+
+def pre_save_user(sender, instance, **kwargs):
+    if instance.pk:  # Check if the instance is already saved (not a new record)
+        try:
+            original_instance = sender.objects.get(pk=instance.pk)  # the user object before applying the changes(updates) 
+            if instance.is_active != original_instance.is_active:
+                if instance.is_active:
+                    send_mail(
+                        'Account Activation',
+                        'Your account has been activated.',
+                        'sena.research@gmail.com',
+                        [instance.email],
+                        fail_silently=False,
+                    )
+        except sender.DoesNotExist:
+            pass
+        
+    
+
 post_save.connect(post_save_receiver, sender=settings.AUTH_USER_MODEL)
+pre_save.connect(pre_save_user, sender=settings.AUTH_USER_MODEL)

@@ -4,10 +4,24 @@ import { Link } from 'react-router-dom'
 
 
 const Service = ({category}) => {
+    console.log(process.env.REACT_APP_DOMAIN)
   const [isTextExpanded, setIsTextExpanded] = useState(false)
   const toggleExpansion = () => {
         setIsTextExpanded(prev=>!prev);
     };
+  const category_bg = {
+    backgroundImage: `url("${process.env.REACT_APP_DOMAIN}${category?.image}")`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: 'transparent',
+    textColor: 'white',
+  }
   return (
     // <div className='relative text-center shadow-xl rounded-xl
     //                 flex flex-col justify-between items-center 
@@ -36,10 +50,9 @@ const Service = ({category}) => {
                   flex flex-col w-full'>
         {/* <div class="bg-gray-40 relative text-center shadow-xl my- rounded-xl"> */}
             {/* PROMOTER PICTURE */}
-            <div class="h-full w-full  ">
-                <img src={`https://backend.senaresearch-dz.com/${category?.image}`} alt='category' class="rounded-t-2xl w-full h-full shadow-xl border-[2px] border-primary"/>
+            <div style={category_bg} class=" shadow-2xl  relative h-56  after:content[''] after:block after:absolute after:left-0 after:top-0 after:bg-black after:opacity-40 after:h-full after:w-full">
+              <h3 class="text-xl mx-auto text-white z-50 my-8 absolute  font-bold leading-normal ">{category?.name}</h3>
             </div>
-            <h3 class="text-xl mx-auto my-8 text-slate-700 font-bold leading-normal ">{category?.name}</h3>
                 
             
         {/* </div> */}
