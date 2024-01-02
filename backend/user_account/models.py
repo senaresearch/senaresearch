@@ -61,8 +61,8 @@ def post_save_receiver(sender, instance, created, **kwargs):
         #     fail_silently=False,
         # )
         mail_admins(
-            subject='New Promoter Created',
-            message=f'A new user created by {instance.username}',
+            subject='A New Promoter Created',
+            message=f'A new user created by {instance.username}, check it',
         )
         instance.is_active = False
         instance.save()

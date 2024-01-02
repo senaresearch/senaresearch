@@ -16,6 +16,7 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = '__all__'
         depth = 1
+    
 class ServiceUpdateSerializer(serializers.ModelSerializer):
     def __init__(self, instance=None, data=None, **kwargs):
         # set partial parameter to True
@@ -26,7 +27,8 @@ class ServiceUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = '__all__'
-        
+        depth = 1
+
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactUs

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DahsboardContext from './DashboardContext'
 import AuthContext from '../../context/AuthContext'
@@ -11,7 +11,25 @@ const DashbordNavbar = () => {
   const {isOpen, setIsOpen} = useContext(DahsboardContext)
   const {userData, logoutUser} = useContext(AuthContext)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
-  console.log(userData?.image)
+  const popupRef = useRef(null)
+  const svgIconRef = useRef(null)
+  const handleClickOutside = (event) => {
+    if (popupRef.current && !popupRef.current.contains(event.target) && !svgIconRef.current.contains(event.target)) {
+        console.log('clicked')
+      // Clicked outside the popup, so close it
+      setIsProfileOpen(false);
+    }
+  };
+  useEffect(() => {
+    // Attach the event listener when the component mounts
+    document.addEventListener('click', handleClickOutside);
+
+    // Detach the event listener when the component unmounts
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []); // The empty dependency array ensures this effect runs only once during component mount
+
 
   return (
     <div style={bgColor} className='
@@ -28,15 +46,14 @@ const DashbordNavbar = () => {
           </Link>
         </div>
         <div className='flex items-center'>
-          
-          <button className=' cursor-pointer' onClick={()=>{setIsProfileOpen(prev=>!prev)}} type='button'>
+          <button ref={svgIconRef} className='cursor-pointer' onClick={()=>{setIsProfileOpen(prev=>!prev)}} type='button'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="w-5 h-5 text-[#9DACBE]">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
           </button>
         </div>
       </div>
-      {/* NAVBAR MENU */}
+      {/* SIDEBAR MENU */}
       <div >
         <button id='menuToggle' type='button' onClick={()=>{setIsOpen(!isOpen)}} className='lg:hidden hover:bg-gray-00 p-2 rounded-full'>
           {
@@ -59,8 +76,8 @@ const DashbordNavbar = () => {
           </svg>
         </Link>
       </div>
-        {/* pROFILE BOX */}
-      <div className={`absolute top-0 left-0 z-50 w-60 `} >
+        {/* PROFILE POPUP */}
+      <div ref={popupRef} className={`absolute top-0 left-0 z-50 w-60 `} >
         <div className={`${isProfileOpen ? 'flex' : 'hidden'}`}>
           <div className='absolute bg-white top-[3.9rem] right-[1.7rem] w-5 h-5 z-40 origin-center rotate-45 border-t shadow-t shadow-l rounded-l-sm border-l'></div>
           <div className='w-fit h-18 rounded-md absolute flex flex-col bg-white top-[4.589rem] right-[1.275rem] z-50 border-x border-b shadow'>
@@ -76,9 +93,6 @@ const DashbordNavbar = () => {
         </div>
       </div>
     </div>
-
-
-
   )
 }
 

@@ -51,7 +51,7 @@ const Service = ({category}) => {
         {/* <div class="bg-gray-40 relative text-center shadow-xl my- rounded-xl"> */}
             {/* PROMOTER PICTURE */}
             <div style={category_bg} class=" shadow-2xl  relative h-56  after:content[''] after:block after:absolute after:left-0 after:top-0 after:bg-black after:opacity-40 after:h-full after:w-full">
-              <h3 class="text-xl mx-auto text-white z-50 my-8 absolute  font-bold leading-normal ">{category?.name}</h3>
+              <h3 class="text-xl mx-auto text-white z-40 my-8 absolute  font-bold leading-normal ">{category?.name}</h3>
             </div>
                 
             

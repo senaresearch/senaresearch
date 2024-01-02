@@ -21,7 +21,8 @@ class CustomService(admin.ModelAdmin):
     
 class OrderService(admin.ModelAdmin):
     model = Order
-    list_display = ['fullname', 'promoter', 'service', ] 
+    list_display = ['fullname', 'promoter', 'service', ]
+    readonly_fields = ['fullname', 'promoter', 'service', 'phone', 'email']
 
 admin.site.register(Order, OrderService)
 admin.site.register(Category, CustomCategoryAdmin)

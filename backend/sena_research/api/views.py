@@ -23,6 +23,7 @@ def services_list(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def service_update(request, serviceID):
+    print(request.data)
     service = get_object_or_404(Service, id=serviceID, promoter=request.user)
     serializer = ServiceUpdateSerializer(service, data=request.data)
     if serializer.is_valid():
@@ -30,6 +31,8 @@ def service_update(request, serviceID):
         services = Service.objects.filter(promoter=request.user)
         servicesSerializer = ServiceSerializer(instance=services, many=True)
         return Response(servicesSerializer.data)
+    print('________________________________________________________________')
+    print(serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
