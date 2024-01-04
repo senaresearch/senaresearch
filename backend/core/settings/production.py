@@ -8,12 +8,21 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS += []
+ALLOWED_HOSTS += ['https://senaresearch-dz.com/', 'senaresearch-dz.com']
 
 # Database
+
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'), conn_max_age=600),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+
 
 # EMAIL SETTINGS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
