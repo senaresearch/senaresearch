@@ -5,30 +5,8 @@ import APIContext from "../../context/APIContext";
 import { toast } from "react-toastify";
 
 const UserServices = () => {
-  const notifyError = (message) =>
-    toast.error(message, {
-      position: "top-left",
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
   const notifySuccess = (message) =>
     toast.success(message, {
-      position: "top-left",
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyWarning = (message) =>
-    toast.warning(message, {
       position: "top-left",
       autoClose: 6000,
       hideProgressBar: false,
@@ -65,7 +43,7 @@ const UserServices = () => {
   useEffect(() => {
     services_list();
     get_categories();
-  }, []);
+  }, [get_categories]);
   const [selectedService, setSelectedService] = useState({
     name: "",
     description: "",
@@ -180,75 +158,75 @@ const UserServices = () => {
           </button>
         </div>
         <div className="w-full overflow-auto max-h-96 ">
-          <table class="borde text-right text-gray-500 min-w-full">
-            <thead class="font-bold sticky top-0 text-center text-lg leading-4 text-primary bg-gray-100">
+          <table className="borde text-right text-gray-500 min-w-full">
+            <thead className="font-bold sticky top-0 text-center text-lg leading-4 text-primary bg-gray-100">
               <tr className=" table-bordered ">
-                {/* <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                {/* <th scope="col" className="px-6 py-3">
+                                <span className="sr-only">Edit</span>
                             </th> */}
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   العمليات
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   الحالة
                 </th>
-                {/* <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" className="px-6 py-3">
                                 وصف الخدمة  
                             </th> */}
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   االسعر
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   نوع الخدمة
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   اسم الخدمة
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   #
                 </th>
               </tr>
             </thead>
             <tbody className="text-center text-base overflow-auto max-h-96">
-              {services.length !== 0 &&
+              {services.length > 0 &&
                 services?.map((service, index) => (
                   <tr
                     key={service?.id}
-                    class="bg-white transition duration-300 ease-in-out cursor-pointer border-b h-4 overflow-hidden text-clip w-full hover:bg-gray-50"
+                    className="bg-white transition duration-300 ease-in-out cursor-pointer border-b h-4 overflow-hidden text-clip w-full hover:bg-gray-50"
                   >
-                    <td class="flex items-center px-6 py-4 justify-center">
+                    <td className="flex items-center px-6 py-4 justify-center">
                       <button
                         onClick={() => {
                           setRemoveModal(true);
                           setSelectedService(service);
                         }}
                         type="button"
-                        class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                        className="font-medium text-red-600 dark:text-red-500 hover:underline"
                       >
                         حذف
                       </button>
                       {/* <span>|</span> */}
-                      {/* <button onClick={()=>{setEditModal(true);setSelectedService(service)}} type='button' class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> تعديل</button> */}
+                      {/* <button onClick={()=>{setEditModal(true);setSelectedService(service)}} type='button' className="font-medium text-blue-600 dark:text-blue-500 hover:underline"> تعديل</button> */}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       {service?.status === "Approved"
                         ? "مقبول"
                         : service?.status === "Rejected"
                         ? "مرفوض"
                         : "يتم معالجته"}
                     </td>
-                    {/* <td class="px-6 py-4 w-full h-8 bg-red-300">
+                    {/* <td className="px-6 py-4 w-full h-8 bg-red-300">
                                     {service?.description}
                                     </td> */}
-                    <td class="px-6 py-4">{service?.price + " DA"}</td>
-                    <td class="px-6 py-4">{service?.category.name}</td>
+                    <td className="px-6 py-4">{service?.price + " DA"}</td>
+                    <td className="px-6 py-4">{service?.category.name}</td>
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {service?.name}
                     </th>
-                    <th class="whitespace-nowrap px-6 py-4 font-medium text-center">
+                    <th className="whitespace-nowrap px-6 py-4 font-medium text-center">
                       {index}
                     </th>
                   </tr>
@@ -270,18 +248,18 @@ const UserServices = () => {
         modalWidth={"500px"}
       >
         <p className="text-right">هل أنت متأكد من رغبتك في حذف هذه الخدمة؟</p>
-        <div class="flex gap-3 flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mr-3 dark:border-opacity-50">
+        <div className="flex gap-3 flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mr-3 dark:border-opacity-50">
           <button
             onClick={() => setRemoveModal(false)}
             type="button"
-            class="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
+            className="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
           >
             رجوع
           </button>
           <button
             onClick={service_delete}
             type="button"
-            class="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+            className="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
           >
             حـذف
           </button>
@@ -407,13 +385,13 @@ const UserServices = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
-                    class="h-6 w-6"
+                    className="h-6 w-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M6 18L18 6M6 6l12 12"
                     ></path>
                   </svg>
@@ -430,17 +408,17 @@ const UserServices = () => {
               </div>
             </div>
           )}
-          <div class="flex col-span-full gap-3 flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mt-4 mr-1 dark:border-opacity-50">
+          <div className="flex col-span-full gap-3 flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mt-4 mr-1 dark:border-opacity-50">
             <button
               onClick={() => setEditModal(false)}
               type="button"
-              class="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
+              className="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
             >
               رجوع
             </button>
             <button
               type="submit"
-              class="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              className="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             >
               تحـــديث
             </button>
@@ -554,13 +532,13 @@ const UserServices = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
-                    class="h-6 w-6"
+                    className="h-6 w-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M6 18L18 6M6 6l12 12"
                     ></path>
                   </svg>
@@ -573,19 +551,19 @@ const UserServices = () => {
               </div>
             </div>
           )}
-          <div class="flex col-span-full gap-3 flex-shrink-0 flex-wrap items-center justify-between w-full rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mt-4 mr-1 dark:border-opacity-50">
+          <div className="flex col-span-full gap-3 flex-shrink-0 flex-wrap items-center justify-between w-full rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mt-4 mr-1 dark:border-opacity-50">
             <button
               onClick={() => {
                 setNewServiceModal(false);
               }}
               type="button"
-              class="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
+              className="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
             >
               رجوع
             </button>
             <button
               type="submit"
-              class="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              className="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             >
               إضـافة خدمـة{" "}
             </button>

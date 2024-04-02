@@ -10,7 +10,7 @@ const Login = () => {
   return (
     <div className='bg-primary w-full py-12 px- sm:px-6'>
       <div className='bg-white w-11/12 md:w-3/6 m-auto flex flex-col gap-16 py-8 rounded-lg text-primary'>
-        <form onSubmit={loginUser} className='w-full flex flex-col gap-6 sm:gap-10 items-center font-semibold text-base leading-[24.38px] text-right font-[Montserrat-Arabic]'>
+        <form method='POST' onSubmit={loginUser} className='w-full flex flex-col gap-6 sm:gap-10 items-center font-semibold text-base leading-[24.38px] text-right font-[Montserrat-Arabic]'>
             <h1 className='text-center font-[Montserrat-Arabic] font-semibold text-2xl leading-[32.66px]' >تسجيل الدخول</h1>
             <input className=' placeholder:text-primary placeholder:text-right px-4 w-11/12 sm:w-4/6 mx-auto text-right py-3 rounded-lg border-2 border-primary' placeholder='اسم المستخدم' type="text" name="username" id="username" />
             <input className=' placeholder:text-primary placeholder:text-right px-4 w-11/12 sm:w-4/6 mx-auto text-right py-3 rounded-lg border-2 border-primary' placeholder='كلمة السر' type="password" name="password" id="password" />

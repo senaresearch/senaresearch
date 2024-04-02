@@ -99,9 +99,9 @@ const SearchBar = ({ categories, setPromoters }) => {
               <path
                 d="M1.73223 1.60864L6.20506 6.0688L10.6779 1.60864"
                 stroke="white"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -146,9 +146,9 @@ const SearchBar = ({ categories, setPromoters }) => {
               <path
                 d="M1.73223 1.60864L6.20506 6.0688L10.6779 1.60864"
                 stroke="white"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

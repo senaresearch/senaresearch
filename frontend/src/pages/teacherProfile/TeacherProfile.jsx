@@ -167,38 +167,38 @@ const TeacherProfile = (props) => {
                                             flex flex-col w-full h-full"
                 >
                   
-                    <div class="bg-gray-40 relative text-center rounded-xl">
+                    <div className="bg-gray-40 relative text-center rounded-xl">
                       {/* PROMOTER PICTURE */}
-                      <div class="h-48 w-full">
+                      <div className="h-48 w-full">
                         <img
                           src={`${process.env.REACT_APP_DOMAIN}${service?.image}`}
                           alt="service"
-                          class=" w-full h-full object-fill rounded-t-2xl shadow-xl border-[2px] border-primary"
+                          className=" w-full h-full object-fill rounded-t-2xl shadow-xl border-[2px] border-primary"
                         />
                       </div>
                       {/* PROMOTER DETAILS */}
-                      <div class=" ">
-                        <h3 class="text-xl  text-slate-700 font-bold leading-normal ">
+                      <div className=" ">
+                        <h3 className="text-xl  text-slate-700 font-bold leading-normal ">
                           {service?.name}
                         </h3>
-                        <div class=" flex justify-center gap-2 items-center mt-2 text-slate-400 font-bold uppercase">
+                        <div className=" flex justify-center gap-2 items-center mt-2 text-slate-400 font-bold uppercase">
                           <div className="flex items-center gap-2 cursor-pointer">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
-                              stroke-width="1.5"
+                              strokeWidth="1.5"
                               stroke="currentColor"
-                              class="w-5 h-5"
+                              className="w-5 h-5"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
                               />
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 d="M6 6h.008v.008H6V6z"
                               />
                             </svg>
@@ -212,13 +212,13 @@ const TeacherProfile = (props) => {
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
-                              stroke-width="1.5"
+                              strokeWidth="1.5"
                               stroke="currentColor"
-                              class="w-5 h-5"
+                              className="w-5 h-5"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
                               />
                             </svg>
@@ -227,9 +227,9 @@ const TeacherProfile = (props) => {
                         </div>
                       </div>
                       {/* BIO SECTION */}
-                      <div class="mt-4 border-t border-slate-200">
-                        <div class="w-full px-4 flex flex-col justify-evenl justify-between h-full">
-                          <p class="font-light min-h-[110px] leading-relaxed text-right text-slate-600 my-4">
+                      <div className="mt-4 border-t border-slate-200">
+                        <div className="w-full px-4 flex flex-col justify-evenl justify-between h-full">
+                          <p className="font-light min-h-[110px] leading-relaxed text-right text-slate-600 my-4">
                             {service?.description}
                             {/* {service?.description.length > 170 && (
                                                         <button onClick={toggleExpansion} className='text-slate-700 font-bold mt-2 underline text-center w-full'>
@@ -248,7 +248,7 @@ const TeacherProfile = (props) => {
                               setIsOpen(true);
                             }}
                             type="button"
-                            class=" text-white bg-primary self-end rounded-2xl py-2 px-4 w-fit m-auto mt-3 mb-4"
+                            className=" text-white bg-primary self-end rounded-2xl py-2 px-4 w-fit m-auto mt-3 mb-4"
                           >
                             {" "}
                             طــلب الخدمة{" "}
@@ -344,19 +344,19 @@ const TeacherProfile = (props) => {
               {orderDetails?.service?.price} DA{" "}
             </span>
           </div>
-          <div class="flex col-span-full w-full gap-3 flex-shrink-0 flex-wrap items-center justify-between rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mt-4 mr-1 dark:border-opacity-50">
+          <div className="flex col-span-full w-full gap-3 flex-shrink-0 flex-wrap items-center justify-between rounded-b-md border-t-2 border-neutral-100 border-opacity-100 pt-4 mt-4 mr-1 dark:border-opacity-50">
             <button
               onClick={() => {
                 setIsOpen(false);
               }}
               type="button"
-              class="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
+              className="inline-block hover:bg-gray-200 rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700  duration-150 hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200 transition-colors ease-linear duration-400"
             >
               رجوع
             </button>
             <button
               type="submit"
-              class="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              className="ml-1  inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             >
               طلب الخدمـة{" "}
             </button>

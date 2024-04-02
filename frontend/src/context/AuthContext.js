@@ -43,12 +43,14 @@ export const AuthProvider = ({children})=>{
 	const [authToken, setAuthToken] = useState(()=>localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null)
 
 	const loginUser = (e)=>{
+
         e.preventDefault()
         axiosAuth({                                                                                                                                                                                                                                                                                                    
             url: '/token/login',
             method: 'post',
             headers:{
                 'Content-Type': 'application/json',
+                'X-CSRFTOKEN': 'csrfCookie',
             },
             data:{
                 "username": e.target.username.value,

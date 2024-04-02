@@ -8,7 +8,7 @@ export default APIContext;
 
 export const APIProvider = ({children})=>{
     const navigate = useNavigate()
-    const [categories, setCategories] = useState(null)
+    const [categories, setCategories] = useState([])
     const get_categories = async ()=>{
         try{
             const { data } = await axiosAPI({
