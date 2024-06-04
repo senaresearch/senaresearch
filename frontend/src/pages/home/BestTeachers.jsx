@@ -23,6 +23,7 @@ const BestTeachers = () => {
               }
           })
           setPromoters(data)
+          
         }catch(error){
           console.log(error)
         }
@@ -30,7 +31,7 @@ const BestTeachers = () => {
       useEffect(()=>{
         get_promoters_data()
       }, [])
-      console.log(promoters)
+      // console.log(promoters)
 
 
       let settings = {
@@ -77,7 +78,7 @@ const BestTeachers = () => {
         <div className='w-4/6 mx-auto sm:w-[95%] xl:w-[85%]  bg-gray-20'>
           <Slider ref={slider => (customSlider.current = slider)} {...settings}>
             {
-              (promoters > 0) && promoters?.map(promoter=>(
+              (promoters.length > 0) && promoters?.map(promoter=>(
                 <TeacherCard key={promoter?.id} promoter={promoter} />
               ))
             }

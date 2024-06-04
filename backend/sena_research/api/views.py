@@ -69,6 +69,7 @@ def get_categories(request):
     categories = Category.objects.all()
     categories_serializer = CategorySerializer(categories, many=True)
     print(categories_serializer.data)
+    print('categories_serializer.data')
     return Response(categories_serializer.data)
 
 @api_view(['GET'])

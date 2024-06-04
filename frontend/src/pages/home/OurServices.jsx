@@ -16,7 +16,6 @@ const OurServices = () => {
         },
       });
       setCategories(data);
-      // console.log(data)
     } catch (error) {
       console.log(error);
     }
@@ -25,6 +24,7 @@ const OurServices = () => {
     get_categories();
   }, []);
   useEffect(() => {
+    // console.log('categories');
     console.log(categories);
   }, [categories]);
   return (
